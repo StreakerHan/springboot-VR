@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='home'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+    <body>
+		<div th:replace="common::common-body"></div>
+       
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="st-file"></i> Invoice page</h1>
+                        <!-- Start .bredcrumb -->
+                        <ul id="crumb" class="breadcrumb">
+                        </ul>
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+                        <div class="option-buttons">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a id="clear-localstorage" class="btn tip" title="Reset panels position">
+                                        <i class="ec-refresh color-red s24"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1"><i class="br-grid s24"></i></a>
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                        <div class="option-dropdown">
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="im-pie"></i>
+                                                    <span>Earning Stats</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-images color-dark"></i>
+                                                    <span>Gallery</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="en-light-bulb color-orange"></i>
+                                                    <span>Fresh ideas</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-link color-blue"></i>
+                                                    <span>Links</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-support color-red"></i>
+                                                    <span>Support</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="st-lock color-teal"></i>
+                                                    <span>Lock area</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"><i class="ec-pencil s24"></i></a> 
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu2">
+                                        <div class="option-dropdown">
+                                            <div class="row">
+                                                <p class="col-lg-12">Quick post</p>
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control" placeholder="Enter title">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <textarea class="form-control wysiwyg" placeholder="Enter text"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control tags1" placeholder="Enter tags">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <button class="btn btn-default btn-xs">Save Draft</button>
+                                                            <button class="btn btn-success btn-xs pull-right">Publish</button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3"><i class="ec-help s24"></i></a>
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu3">
+                                        <div class="option-dropdown">
+                                            <p>First time visitor ? <a href="#" id="app-tour" class="btn btn-success ml15">Take app tour</a> 
+                                            </p>
+                                            <hr>
+                                            <p>Or check the <a href="#" class="btn btn-danger ml15">FAQ</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <!-- Page start here ( usual with .row ) -->
+                    <div class="row printable">
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <div class="panel panel-default plain">
+                                <!-- Start .panel -->
+                                <div class="panel-heading white-bg"></div>
+                                <div class="panel-body">
+                                    <div class="invoice">
+                                        <!-- Start .invoice -->
+                                        <div class="invoice-header">
+                                            <!-- Start .invoice-header -->
+                                            <div class="invoice-logo col-md-12">
+                                                <img src="assets/img/suggelogo.png" height="50" alt="invoice logo">
+                                            </div>
+                                            <div class="invoice-from col-md-9">
+                                                <ul class="list-unstyled text-left">
+                                                    <li>SuggeElson, group.</li>
+                                                    <li>UI design</li>
+                                                    <li>Barcelona, Spain</li>
+                                                    <li>Francesc Cambo 21</li>
+                                                    <li>Phone: 932 942 611</li>
+                                                </ul>
+                                                <div class="invoice-date">
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <h2>Invoice</h2>
+                                                        </li>
+                                                        <li>invoice# 10034</li>
+                                                        <li>April 27, 2014</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="invoice-to col-md-3">
+                                                <ul class="list-unstyled text-right">
+                                                    <li>Pixelit, inc.</li>
+                                                    <li>London, United Kindgom</li>
+                                                    <li>30 Leicester Square</li>
+                                                    <li>Phone: +44 (0)20 7766 6600</li>
+                                                </ul>
+                                                <div class="invoice-total text-right">
+                                                    <div class="well mt25 bn dark-bg">
+                                                        <span class="invoice-total-txt">Total</span>
+                                                        <span class="invoice-total-sum"> 3564.27 USD</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End .invoice-header -->
+                                        <div class="invoice-content">
+                                            <!-- Start .invoice-content -->
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">QTY</th>
+                                                        <th>ITEM</th>
+                                                        <th>DESCRIPTION</th>
+                                                        <th>PRICE</th>
+                                                        <th>SUBTOTAL</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center"><strong>1</strong>
+                                                        </td>
+                                                        <td><a href="#">Logo Design</a>
+                                                        </td>
+                                                        <td>Come up with idea for logo and create high quality design form scratch.</td>
+                                                        <td>$1,000.00</td>
+                                                        <td>$1,000.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><strong>1</strong>
+                                                        </td>
+                                                        <td><a href="#">SEO</a>
+                                                        </td>
+                                                        <td>Promote website in all major search engines also in social networks.</td>
+                                                        <td>$1,000.00</td>
+                                                        <td>$1,000.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><strong>1</strong>
+                                                        </td>
+                                                        <td><a href="#">Website Design</a>
+                                                        </td>
+                                                        <td>Create website design that match to branding and services.</td>
+                                                        <td>$2,300.00</td>
+                                                        <td>$2,300.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><strong>1</strong>
+                                                        </td>
+                                                        <td><a href="#">Support</a>
+                                                        </td>
+                                                        <td>Premium support for 1 year</td>
+                                                        <td>$300.00</td>
+                                                        <td>$300.00</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="well bn">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="well bn pull-left mb0">
+                                                            <span class="invoice-total-txt">Subtotal</span>
+                                                            <span class="invoice-total-sum"> $4.600 USD</span>
+                                                        </div>
+                                                        <div class="invoice-plus-icon pull-left">
+                                                            <i class="im-plus"></i>
+                                                        </div>
+                                                        <div class="well bn pull-left mb0">
+                                                            <span class="invoice-total-txt">Tax and Fees</span>
+                                                            <span class="invoice-total-sum"> $460 USD</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="well bn dark-bg mb0">
+                                                            <span class="invoice-total-txt">Total</span>
+                                                            <span class="invoice-total-sum"> 3564.27 USD</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End .invoice-content -->
+                                        <div class="invoice-footer">
+                                            <!-- Start .invoice-footer -->
+                                            <h4>Payment methods</h4>
+                                            <i class="im-paypal s24"></i> suggeelson@suggeelson.com
+                                        </div>
+                                        <!-- End .invoice-footer -->
+                                    </div>
+                                    <!-- End .invoice -->
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End #content -->
+        
+    </body>
+</html>

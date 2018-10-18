@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="headerFragment(title,active)">
+        <meta charset="utf-8">
+        <title>Manage Work</title>
+        <!-- Mobile specific metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Force IE9 to render in normal mode -->
+        <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+        <meta name="author" content="SuggeElson" />
+        <meta name="description" content=""
+        />
+        <meta name="keywords" content=""
+        />
+        <meta name="application-name" content="sprFlat admin template" />
+        <!-- Import google fonts - Heading first/ text second -->
+        <link rel='stylesheet' type='text/css' >
+        <!--[if lt IE 9]>
+
+<![endif]-->
+        <!-- Css files -->
+        <!-- Icons -->
+        <link th:href="@{/css/icons.css}" rel="stylesheet" />
+        <!-- jQueryUI -->
+        <link th:href="@{/css/sprflat-theme/jquery.ui.all.css}" rel="stylesheet" />
+        <!-- Bootstrap stylesheets (included template modifications) -->
+        <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+        <!-- Plugins stylesheets (all plugin custom css) -->
+        <link th:href="@{/css/plugins.css}" rel="stylesheet" />
+        <!-- Main stylesheets (template main css file) -->
+        <link th:href="@{/css/main.css}" rel="stylesheet" />
+        <!-- Custom stylesheets ( Put your own changes here ) -->
+        <link th:href="@{/css/custom.css}" rel="stylesheet" />
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/img/ico/apple-touch-icon-144-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/img/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/img/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed" th:href="@{/img/ico/apple-touch-icon-57-precomposed.png}">
+        <link rel="icon" th:href="@{/img/ico/favicon.ico}" type="image/png">
+        <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
+        <meta name="msapplication-TileColor" content="#3399cc" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+    </head>
+    <div th:fragment="common-body">
+        <!-- Start #header -->
+        <div id="header">
+            <div class="container-fluid">
+                <div class="navbar">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" th:href="index.html">
+                            <i class="im-windows8 text-logo-element animated bounceIn"></i><span class="text-logo">stre</span><span class="text-slogan">aker</span>
+                        </a>
+                    </div>
+                    <nav class="top-nav" role="navigation">
+                        <ul class="nav navbar-nav pull-left">
+                            <li id="toggle-sidebar-li">
+                                <a href="#" id="toggle-sidebar"><i class="en-arrow-left2"></i>
+                        </a>
+                            </li>
+                            <li>
+                                <a href="#" class="full-screen"><i class="fa-fullscreen"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown">
+                                <a th:href="@{/#}" data-toggle="dropdown"><i class="br-alarm"></i> <span class="notification">5</span></a>
+                                <ul class="dropdown-menu notification-menu right" role="menu">
+                                    <li class="clearfix">
+                                        <i class="ec-chat"></i> 
+                                        <a th:href="@{/#}" class="notification-user"> Ric Jones </a>
+                                        <span class="notification-action"> replied to your </span> 
+                                        <a th:href="@{/#}" class="notification-link"> comment</a>
+                                    </li>
+                                    <li class="clearfix">
+                                        <i class="st-pencil"></i> 
+                                        <a th:href="@{/#}" class="notification-user"> SuggeElson </a>
+                                        <span class="notification-action"> just write a </span> 
+                                        <a th:href="@{/#}" class="notification-link"> post</a>
+                                    </li>
+                                    <li class="clearfix">
+                                        <i class="ec-trashcan"></i> 
+                                        <a th:href="@{/#}" class="notification-user"> SuperAdmin </a>
+                                        <span class="notification-action"> just remove </span> 
+                                        <a th:href="@{/#}" class="notification-link"> 12 files</a>
+                                    </li>
+                                    <li class="clearfix">
+                                        <i class="st-paperclip"></i> 
+                                        <a th:href="@{/#}" class="notification-user"> C. Wiilde </a>
+                                        <span class="notification-action"> attach </span> 
+                                        <a th:href="@{/#}" class="notification-link"> 3 files</a>
+                                    </li>
+                                    <li class="clearfix">
+                                        <i class="st-support"></i> 
+                                        <a th:href="@{/#}" class="notification-user"> John Simpson </a>
+                                        <span class="notification-action"> add support </span> 
+                                        <a th:href="@{/#}" class="notification-link"> ticket</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                    <a th:href="@{/#}" data-toggle="dropdown">
+                            <img class="user-avatar" th:src="@{/img/avatars/48.jpg}"></a>
+                                <ul class="dropdown-menu right" role="menu">
+                                    <li><a th:href="@{/profile}"><i class="st-user"></i> 个人设置</a>
+                                    </li>
+                                    <!--<li><a th:href="@{/file}"><i class="st-cloud"></i> Files</a>
+                                    </li>
+                                    <li><a th:href="@{/settiing}"><i class="st-settings"></i> Settings</a>
+                                    </li>-->
+                                    <li><a th:href="@{/logout}"><i class="im-exit"></i> 安全退出</a>
+                                    </li>
+                                </ul>
+                            <!--</li>
+                            <li id="toggle-right-sidebar-li"><a th:href="@{/#}" id="toggle-right-sidebar"><i class="ec-users"></i> <span class="notification">3</span></a>
+                            </li>-->
+                        </ul>
+                    </nav>
+                </div>
+              
+            </div>
+            <!-- Start .header-inner -->
+        </div>
+        <!-- End #header -->
+        <!-- Start #sidebar -->
+        <div id="sidebar">
+            <!-- Start .sidebar-inner -->
+            <div class="sidebar-inner">
+                <!-- Start #sideNav -->
+                <ul id="sideNav" class="nav nav-pills nav-stacked">
+                    <li class="top-search">
+                        <form>
+                            <input type="text" name="search" placeholder="搜索 ...">
+                            <button type="submit"><i class="ec-search s20"></i>
+                            </button>
+                        </form>
+                    </li>
+                    <li><a th:href="@{/index}">管理主页 <i class="im-screen"></i></a>
+                    </li>
+                    <li><a th:href="@{/user-manage}">人事管理 <i class="st-chart"></i></a>
+                    </li>
+                    <li><a th:href="@{/system-logs}"> 系统日志 <i class="im-paragraph-justify"></i></a>
+                    </li>
+                    <li><a th:href="@{/article-manage}"> 文章管理 <i class="im-table2"></i></a>
+                    </li>
+                    <li><a th:href="@{/article-add}"> 发布文章 <i class="st-lab"></i></a>
+                    </li>
+                    <li><a th:href="@{/comment-manage}">留言管理<i class="ec-mail"></i></a>
+                    </li>
+                    <li><a th:href="@{/file}"><i class="en-upload"></i> 文件管理</a>
+                    </li>
+                    <li><a th:href="@{/gallery}"><i class="im-images"></i> 添加商品</a>
+                    </li>
+                    <li><a th:href="@{/widgets}"><i class="st-diamond"></i> 商品管理 </a>
+                    </li>
+                    <li><a th:href="@{/#}">统计管理 <i class="st-files"></i></a>
+                    </li>
+                    <li>
+                        <a th:href="@{/#}">Bonus <i class="im-gift"></i></a>
+                        <ul class="nav sub">
+                            <li><a th:href="@{/landing}"><i class="im-airplane"></i> Landing page</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- End .sidebar-inner -->
+        </div>
+        <!-- End #sidebar -->
+        <!-- Start #right-sidebar -->
+        <div id="right-sidebar" class="hide-sidebar">
+            <!-- Start .sidebar-inner -->
+            <div class="sidebar-inner">
+                <div class="sidebar-panel mt0">
+                    <div class="sidebar-panel-content fullwidth pt0">
+                        <div class="chat-user-list">
+                            <form class="form-horizontal chat-search" role="form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search for user...">
+                                    <button type="submit"><i class="ec-search s16"></i>
+                                    </button>
+                                </div>
+                                <!-- End .form-group  -->
+                            </form>
+                            <ul class="chat-ui bsAccordion">
+                                <li>
+                                    <a th:href="@{/#}">Favorites <span class="notification teal">4</span><i class="en-arrow-down5"></i></a>
+                                    <ul class="in">
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/49.jpg}" alt="@chadengle">Chad Engle
+                                                <span class="has-message"><i class="im-pencil"></i></span>
+                                            </a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/54.jpg}" alt="@alagoon">Anthony Lagoon</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/52.jpg}" alt="@koridhandy">Kory Handy</a>
+                                            <span class="status"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/50.jpg}" alt="@divya">Divia Manyan</a>
+                                            <span class="status"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a th:href="@{/#}">Online <span class="notification green">3</span><i class="en-arrow-down5"></i></a>
+                                    <ul class="in">
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/51.jpg}" alt="@kolage">Eric Hofman</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/55.jpg}" alt="@mikebeecham">Mike Beecham</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/53.jpg}" alt="@derekebradley">Darek Bradly</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a th:href="@{/#}">Offline <span class="notification red">5</span><i class="en-arrow-down5"></i></a>
+                                    <ul>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/56.jpg}" alt="@laurengray">Lauren Grey</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/49.jpg}" alt="@chadengle">Chad Engle</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/58.jpg}" alt="@frankiefreesbie">Frankie Freesibie</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/57.jpg}" alt="@joannefournier">Joane Fornier</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/#}" class="chat-name">
+                                                <img class="chat-avatar" th:src="@{/img/avatars/59.jpg}" alt="@aiiaiiaii">Alia Alien</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chat-box">
+                            <h5>Chad Engle</h5>
+                            <a id="close-user-chat" th:href="@{/#}" class="btn btn-xs btn-primary"><i class="en-arrow-left4"></i></a>
+                            <ul class="chat-ui chat-messages">
+                                <li class="chat-user">
+                                    <p class="avatar">
+                                        <img th:src="@{/img/avatars/49.jpg}" alt="@chadengle">
+                                    </p>
+                                    <p class="chat-name">Chad Engle <span class="chat-time">15 seconds ago</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Hello Sugge check out the last order.</p>
+                                </li>
+                                <li class="chat-me">
+                                    <p class="avatar">
+                                        <img th:src="@{/img/avatars/48.jpg}" alt="SuggeElson">
+                                    </p>
+                                    <p class="chat-name">SuggeElson <span class="chat-time">10 seconds ago</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Ok i will check it out.</p>
+                                </li>
+                                <li class="chat-user">
+                                    <p class="avatar">
+                                        <img th:src="@{/img/avatars/49.jpg}" alt="@chadengle">
+                                    </p>
+                                    <p class="chat-name">Chad Engle <span class="chat-time">now</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Thank you, have a nice day</p>
+                                </li>
+                            </ul>
+                            <div class="chat-write">
+                                <form action="#" class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <textarea name="sendmsg" id="sendMsg" class="form-control elastic" rows="1"></textarea>
+                                        <a role="button" class="btn" id="attach_photo_btn">
+                                            <i class="fa-picture s20"></i> 
+                                        </a>
+                                        <input type="file" name="attach_photo" id="attach_photo">
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End .sidebar-inner -->
+        </div>
+        <!-- End #right-sidebar -->
+        <!-- Start #content -->
+       
+        <!-- End #content -->
+        <!-- Javascripts -->
+        <!-- Load pace first -->
+        <script th:src="@{/plugins/core/pace/pace.min.js}"></script>
+        <!-- Important javascript libs(put in all pages) -->
+        <script th:src="@{/js/jquery-1.8.3.min.js}"></script>
+        <script>
+        window.jQuery || document.write('<script th:src="@{/js/libs/jquery-2.1.1.min.js}">\x3C/script>')
+        </script>
+        <script th:src="@{/js/jquery-ui.js}"></script>
+        <script th:src="@{//code.jquery.com/ui/1.10.4/jquery-ui.js}"></script>
+        <script>
+        window.jQuery || document.write('<script th:src="@{/js/libs/jquery-ui-1.10.4.min.js}">\x3C/script>')
+        </script>
+        <!-- Bootstrap plugins -->
+        <script th:src="@{/js/bootstrap/bootstrap.js}"></script>
+        <!-- Core plugins ( not remove ever) -->
+        <!-- Handle responsive view functions -->
+        <script th:src="@{/js/jRespond.min.js}"></script>
+        <!-- Custom scroll for sidebars,tables and etc. -->
+        <script th:src="@{/plugins/core/slimscroll/jquery.slimscroll.min.js}"></script>
+        <script th:src="@{/plugins/core/slimscroll/jquery.slimscroll.horizontal.min.js}"></script>
+        <!-- Resize text area in most pages -->
+        <script th:src="@{/plugins/forms/autosize/jquery.autosize.js}"></script>
+        <!-- Proivde quick search for many widgets -->
+        <script th:src="@{/plugins/core/quicksearch/jquery.quicksearch.js}"></script>
+        <!-- Bootbox confirm dialog for reset postion on panels -->
+        <script th:src="@{/plugins/ui/bootbox/bootbox.js}"></script>
+        <!-- Other plugins ( load only nessesary plugins for every page) -->
+        <script th:src="@{/plugins/charts/flot/jquery.flot.js}"></script>
+        <script th:src="@{/plugins/charts/flot/jquery.flot.pie.js}"></script>
+        <script th:src="@{/plugins/charts/flot/jquery.flot.resize.js}"></script>
+        <script th:src="@{/plugins/charts/flot/jquery.flot.time.js}"></script>
+        <script th:src="@{/plugins/charts/flot/jquery.flot.growraf.js}"></script>
+        <script th:src="@{/plugins/charts/flot/jquery.flot.categories.js}"></script>
+        <script th:src="@{/plugins/charts/flot/jquery.flot.stack.js}"></script>
+        <script th:src="@{/plugins/charts/flot/jquery.flot.tooltip.min.js}"></script>
+        <script th:src="@{/plugins/charts/flot/date.js}"></script>
+        <script th:src="@{/plugins/charts/sparklines/jquery.sparkline.js}"></script>
+        <script th:src="@{/plugins/charts/pie-chart/jquery.easy-pie-chart.js}"></script>
+        <script th:src="@{/plugins/forms/icheck/jquery.icheck.js}"></script>
+        <script th:src="@{/plugins/forms/tags/jquery.tagsinput.min.js}"></script>
+        <script th:src="@{/plugins/forms/tinymce/tinymce.min.js}"></script>
+        <script th:src="@{/plugins/tables/datatables/jquery.dataTables.min.js}"></script>
+        <script th:src="@{/plugins/tables/datatables/jquery.dataTablesBS3.js}"></script>
+        <script th:src="@{/plugins/tables/datatables/tabletools/ZeroClipboard.js}"></script>
+        <script th:src="@{/plugins/tables/datatables/tabletools/TableTools.js}"></script>
+        <script th:src="@{/plugins/misc/highlight/highlight.pack.js}"></script>
+        <script th:src="@{/plugins/misc/countTo/jquery.countTo.js}"></script>
+        <script th:src="@{/plugins/ui/weather/skyicons.js}"></script>
+        <script th:src="@{/plugins/ui/notify/jquery.gritter.js}"></script>
+        <script th:src="@{/plugins/ui/calendar/fullcalendar.js}"></script>
+        <script th:src="@{/js/jquery.sprFlat.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+        <script th:src="@{/js/base.js}"></script>
+        <script th:src="@{/js/pages/data-tables.js}"></script>
+    </div>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='home'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+    <body>
+		<div th:replace="common::common-body"></div>
+        
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="ec-search"></i> Search results</h1>
+                        <!-- Start .bredcrumb -->
+                        <ul id="crumb" class="breadcrumb">
+                        </ul>
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+                        <div class="option-buttons">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a id="clear-localstorage" class="btn tip" title="Reset panels position">
+                                        <i class="ec-refresh color-red s24"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1"><i class="br-grid s24"></i></a>
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                        <div class="option-dropdown">
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="im-pie"></i>
+                                                    <span>Earning Stats</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-images color-dark"></i>
+                                                    <span>Gallery</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="en-light-bulb color-orange"></i>
+                                                    <span>Fresh ideas</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-link color-blue"></i>
+                                                    <span>Links</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-support color-red"></i>
+                                                    <span>Support</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="st-lock color-teal"></i>
+                                                    <span>Lock area</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"><i class="ec-pencil s24"></i></a> 
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu2">
+                                        <div class="option-dropdown">
+                                            <div class="row">
+                                                <p class="col-lg-12">Quick post</p>
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control" placeholder="Enter title">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <textarea class="form-control wysiwyg" placeholder="Enter text"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control tags1" placeholder="Enter tags">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <button class="btn btn-default btn-xs">Save Draft</button>
+                                                            <button class="btn btn-success btn-xs pull-right">Publish</button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3"><i class="ec-help s24"></i></a>
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu3">
+                                        <div class="option-dropdown">
+                                            <p>First time visitor ? <a href="#" id="app-tour" class="btn btn-success ml15">Take app tour</a> 
+                                            </p>
+                                            <hr>
+                                            <p>Or check the <a href="#" class="btn btn-danger ml15">FAQ</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <!-- Page start here ( usual with .row ) -->
+                    <div class="row">
+                        <div class="search-page">
+                            <!-- Start .search-page -->
+                            <div class="col-lg-4">
+                                <form class="form-inline search-page-form">
+                                    <div class="well bn">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" value="Nature" placeholder="search here ...">
+                                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary"><i class="ec-search s16"></i></button>
+                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="search-page-toolbar btn-toolbar" role="toolbar">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default btn-lg">
+                                            <input type="radio" name="options" id="option1" checked>Everything
+                                        </label>
+                                        <label class="btn btn-default btn-lg">
+                                            <input type="radio" name="options" id="option2">Images
+                                        </label>
+                                        <label class="btn btn-default btn-lg">
+                                            <input type="radio" name="options" id="option3">Videoclips
+                                        </label>
+                                        <label class="btn btn-default btn-lg">
+                                            <input type="radio" name="options" id="option4">News
+                                        </label>
+                                        <label class="btn btn-default btn-lg">
+                                            <input type="radio" name="options" id="option5">Books
+                                        </label>
+                                        <label class="btn btn-default btn-lg">
+                                            <input type="radio" name="options" id="option6">Apps
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <!-- col-lg- start here -->
+                                <div class="search-results-info">Around <strong>600</strong> results (0,38 sec)</div>
+                                <h4>Pictures for nature</h4>
+                                <div class="search-pics-preview">
+                                    <img src="assets/img/gallery/1.jpg" alt="image" width="100">
+                                    <img src="assets/img/gallery/2.jpg" alt="image" width="100">
+                                    <img src="assets/img/gallery/3.jpg" alt="image" width="100">
+                                    <img src="assets/img/gallery/4.jpg" alt="image" width="100">
+                                </div>
+                                <a href="#" class="btn btn-default mt20"> More pictures</a> 
+                                <div class="search-results bt mt20">
+                                    <div class="search-results-item">
+                                        <h4 class="search-results-item-name"><a href="#">Journal home - Nature </a>
+                                        </h4>
+                                        <div class="search-results-item-url">
+                                            <a href="#">
+                                www.nature.com/nature
+                                <i class="fa-caret-down"></i>
+                            </a> 
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, nihil, deleniti explicabo eveniet porro rerum vel sed consectetur sapiente consequatur iure similique ipsum maiores ea tempora expedita sint
+                                            inventore nobis?</p>
+                                    </div>
+                                    <div class="search-results-item">
+                                        <h4 class="search-results-item-name"><a href="#">Nature - YouTube</a>
+                                        </h4>
+                                        <div class="search-result-video">
+                                            <a href="#">
+                                                <img src="assets/img/video.jpg" alt="video" width="100" height="60">
+                                                <div class="play-video">
+                                                    <i class="fa-play"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="search-results-item-url">
+                                            <a href="#">
+                                www.youtube.com/watch?v=KXdUNp_9oHs
+                                <i class="fa-caret-down"></i>
+                            </a> 
+                                        </div>
+                                        <p>Beautiful nature pictures. Makes you appreciate our planet Earth. Music by Kevin Kern, "Remembering the Light"</p>
+                                    </div>
+                                    <div class="search-results-item">
+                                        <h4 class="search-results-item-name"><a href="#">CATHOLIC ENCYCLOPEDIA: Nature </a>
+                                        </h4>
+                                        <div class="search-results-item-url">
+                                            <a href="#">
+                                www.newadvent.org › Catholic Encyclopedia › N‎
+                                <i class="fa-caret-down"></i>
+                            </a> 
+                                        </div>
+                                        <p>Etymologically (Latin natura from nasci, to be born, like the corresponding Greek physis from phyein, to bring forth) has reference to the production of things, and ...</p>
+                                    </div>
+                                    <div class="search-results-item">
+                                        <h4 class="search-results-item-name"><a href="#">Second Nature | Transforming Higher Education for a ... </a>
+                                        </h4>
+                                        <div class="search-results-item-url">
+                                            <a href="#">
+                                www.secondnature.org/‎
+                                <i class="fa-caret-down"></i>
+                            </a> 
+                                        </div>
+                                        <p>Second Nature's mission is to create a sustainable society by transforming higher education. We accelerate movement toward a sustainable future by serving ...</p>
+                                    </div>
+                                    <div class="search-results-item">
+                                        <h4 class="search-results-item-name"><a href="#">Nature - Psychology Today </a>
+                                        </h4>
+                                        <div class="search-results-item-url">
+                                            <a href="#">
+                                www.psychologytoday.com/.../environmental-psy...‎
+                                <i class="fa-caret-down"></i>
+                            </a> 
+                                        </div>
+                                        <p>Living in high-rise apartments and driving cars are very new experiences for the human species, but we are notable for our ability to adapt to wildly diverse ...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- col-lg-12 end here -->
+                            <div class="col-lg-12">
+                                <!-- col-lg-12 start here -->
+                                <ul class="pagination mb0">
+                                    <li><a href="#"><i class="en-arrow-left8"></i></a>
+                                    </li>
+                                    <li><a href="#"><span class="sr-only">(current)</span>1</a>
+                                    </li>
+                                    <li><a href="#">2</a>
+                                    </li>
+                                    <li><a href="#">3</a>
+                                    </li>
+                                    <li><a href="#">4</a>
+                                    </li>
+                                    <li><a href="#">5</a>
+                                    </li>
+                                    <li><a href="#"><i class="en-arrow-right8"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- col-lg-12 end here -->
+                        </div>
+                        <!-- End .search-page -->
+                    </div>
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End #content -->
+        
+    </body>
+</html>

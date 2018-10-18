@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='syslog'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+<body>
+<div th:replace="common::common-body"></div>
+
+<!-- Start #content -->
+<div id="content">
+    <!-- Start .content-wrapper -->
+    <div class="content-wrapper">
+        <div class="row">
+            <!-- Start .row -->
+            <!-- Start .page-header -->
+            <div class="col-lg-12 heading">
+                <h1 class="page-header"><i class="im-table2"></i> 系统日志</h1>
+
+            </div>
+            <!-- End .page-header -->
+        </div>
+        <!-- End .row -->
+        <div class="outlet">
+            <!-- Start .outlet -->
+            <!-- Page start here ( usual with .row ) -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- col-lg-12 start here -->
+                    <div class="panel panel-default plain toggle panelClose panelRefresh">
+                        <!-- Start .panel -->
+                        <div class="panel-body">
+                            <table class="table display" id="datatable">
+                                <thead>
+                                <tr>
+                                    <th style=" text-align:center;">日志编号</th>
+                                    <th style=" text-align:center;">用户名称</th>
+                                    <th style=" text-align:center;">IP地址</th>
+                                    <th style=" text-align:center;">访问时间</th>
+                                    <th style=" text-align:center;">用户角色</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <th:block th:each="log : ${logs}">
+                                        <tr th:attr="lid=${log.lid}" class="odd gradeX">
+                                            <td class="center" th:text="${log.lid}"></td>
+                                            <td class="center" th:text="${log.username}"></td>
+                                            <td class="center" th:text="${log.ip}"></td>
+                                            <td class="center" th:text="${log.ldate}"></td>
+                                            <td class="center">
+                                                <th:block th:if="${log.role == '2'}">
+                                                    <button type="button" class="btn btn-xs btn-primary">管理员</button>
+                                                </th:block>
+                                                <th:block th:if="${log.role == '1'}">
+                                                    <button type="button" class="btn btn-xs btn-success">普通用户</button>
+                                                </th:block>
+                                            </td>
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th style=" text-align:center;">日志编号</th>
+                                    <th style=" text-align:center;">用户名称</th>
+                                    <th style=" text-align:center;">IP地址</th>
+                                    <th style=" text-align:center;">访问时间</th>
+                                    <th style=" text-align:center;">用户角色</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- End .panel -->
+                </div>
+                <!-- col-lg-12 end here -->
+            </div>
+        </div>
+        <!-- End .outlet -->
+    </div>
+    <!-- End .content-wrapper -->
+    <div class="clearfix"></div>
+</div>
+<!-- End #content -->
+
+</body>
+</html>

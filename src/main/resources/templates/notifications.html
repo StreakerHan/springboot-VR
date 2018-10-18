@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='home'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+    <body>
+		<div th:replace="common::common-body"></div>
+        
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="fa-bell"></i> Notification messages</h1>
+                        <!-- Start .bredcrumb -->
+                        <ul id="crumb" class="breadcrumb">
+                        </ul>
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+                        <div class="option-buttons">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a id="clear-localstorage" class="btn tip" title="Reset panels position">
+                                        <i class="ec-refresh color-red s24"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1"><i class="br-grid s24"></i></a>
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                        <div class="option-dropdown">
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="im-pie"></i>
+                                                    <span>Earning Stats</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-images color-dark"></i>
+                                                    <span>Gallery</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="en-light-bulb color-orange"></i>
+                                                    <span>Fresh ideas</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-link color-blue"></i>
+                                                    <span>Links</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-support color-red"></i>
+                                                    <span>Support</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="st-lock color-teal"></i>
+                                                    <span>Lock area</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"><i class="ec-pencil s24"></i></a> 
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu2">
+                                        <div class="option-dropdown">
+                                            <div class="row">
+                                                <p class="col-lg-12">Quick post</p>
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control" placeholder="Enter title">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <textarea class="form-control wysiwyg" placeholder="Enter text"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control tags1" placeholder="Enter tags">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <button class="btn btn-default btn-xs">Save Draft</button>
+                                                            <button class="btn btn-success btn-xs pull-right">Publish</button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3"><i class="ec-help s24"></i></a>
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu3">
+                                        <div class="option-dropdown">
+                                            <p>First time visitor ? <a href="#" id="app-tour" class="btn btn-success ml15">Take app tour</a> 
+                                            </p>
+                                            <hr>
+                                            <p>Or check the <a href="#" class="btn btn-danger ml15">FAQ</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <!-- Page start here ( usual with .row ) -->
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <div class="page-header">
+                                <h5>Notify messages</h5>
+                            </div>
+                            <button id="regular-notice" type="button" class="btn btn-dark mr15 mb15">Regular notice</button>
+                            <button id="info-notice" type="button" class="btn btn-info mr15 mb15">Info notice</button>
+                            <button id="success-notice" type="button" class="btn btn-success mr15 mb15">Success notice</button>
+                            <button id="error-notice" type="button" class="btn btn-danger mr15 mb15">Error notice</button>
+                            <button id="sticky-notice" type="button" class="btn btn-info mr15 mb15">Sticky notice</button>
+                            <button id="topleft-notice" type="button" class="btn btn-dark mr15 mb15">Top Left position</button>
+                            <button id="bottomleft-notice" type="button" class="btn btn-dark mr15 mb15">Bottom Left position</button>
+                            <button id="bottomright-notice" type="button" class="btn btn-dark mr15 mb15">Bottom right position</button>
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                    <!-- End .row -->
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-12">
+                            <div class="page-header">
+                                <h5>Static alert messages</h5>
+                            </div>
+                            <div class="alert alert-warning fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                            </div>
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                            </div>
+                            <div class="alert alert-success fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <i class="fa-ok alert-icon s24"></i>
+                                <strong>Well done!</strong> You successfully read this important alert message.
+                            </div>
+                            <div class="alert alert-info fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                            </div>
+                            <div class="alert alert-block alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4 class="alert-heading">Oh snap! You got an error!</h4>
+                                <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                                <p>
+                                    <a class="btn btn-danger" href="#">Take this action</a>  <a class="btn btn-primary" href="#">Or do this</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End .row -->
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-12">
+                            <div class="page-header">
+                                <h5>Callout messages</h5>
+                            </div>
+                            <div class="bs-callout bs-callout-warning fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>Warning</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, explicabo, doloremque, ullam neque veritatis quasi hic excepturi eum laborum sunt nisi libero natus ab eos autem voluptatum non numquam fuga!</p>
+                            </div>
+                            <div class="bs-callout bs-callout-primary fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>Primary</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, explicabo, doloremque, ullam neque veritatis quasi hic excepturi eum laborum sunt nisi libero natus ab eos autem voluptatum non numquam fuga!</p>
+                            </div>
+                            <div class="bs-callout bs-callout-info fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>Info</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, explicabo, doloremque, ullam neque veritatis quasi hic excepturi eum laborum sunt nisi libero natus ab eos autem voluptatum non numquam fuga!</p>
+                            </div>
+                            <div class="bs-callout bs-callout-success fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>Success</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, explicabo, doloremque, ullam neque veritatis quasi hic excepturi eum laborum sunt nisi libero natus ab eos autem voluptatum non numquam fuga!</p>
+                            </div>
+                            <div class="bs-callout bs-callout-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>Danger</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, explicabo, doloremque, ullam neque veritatis quasi hic excepturi eum laborum sunt nisi libero natus ab eos autem voluptatum non numquam fuga!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End .row -->
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End #content -->
+       
+    </body>
+</html>

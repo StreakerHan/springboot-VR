@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.streaker.dao.LogDao">
+
+    <sql id="BASE_TABLE">
+        t_log
+    </sql>
+
+    <!-- 基本列 -->
+    <sql id="BASE_COLUMN">
+        l.lid, l.uid, l.username, l.ldate, l.ip, l.role
+    </sql>
+
+    <resultMap type="com.streaker.entity.Log" id="Log">
+    <id column="lid" property="lid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+    <id column="uid" property="uid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+    <id column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <id column="ldate" property="ldate" javaType="java.util.Date" jdbcType="INTEGER"/>
+    <id column="role" property="role" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <id column="ip" property="ip" javaType="java.lang.String" jdbcType="VARCHAR"/>
+</resultMap>
+
+    <!-- 新增日志记录 -->
+    <insert id="addLog" parameterType="com.streaker.entity.Log">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uid, username, ldate, ip, role,
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{uid},  #{username}, #{ldate}, #{ip}, #{role},
+        </trim>
+    </insert>
+
+    <!--查询日志记录-->
+    <select id="getLogList" resultType="com.streaker.entity.Log">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/> AS l
+        ORDER BY l.lid DESC
+    </select>
+
+</mapper>

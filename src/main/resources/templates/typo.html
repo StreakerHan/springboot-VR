@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='home'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+    <body>
+		<div th:replace="common::common-body"></div>
+        
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="im-font"></i> Typography</h1>
+                        <!-- Start .bredcrumb -->
+                        <ul id="crumb" class="breadcrumb">
+                        </ul>
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+                        <div class="option-buttons">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a id="clear-localstorage" class="btn tip" title="Reset panels position">
+                                        <i class="ec-refresh color-red s24"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1"><i class="br-grid s24"></i></a>
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                        <div class="option-dropdown">
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="im-pie"></i>
+                                                    <span>Earning Stats</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-images color-dark"></i>
+                                                    <span>Gallery</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="en-light-bulb color-orange"></i>
+                                                    <span>Fresh ideas</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-link color-blue"></i>
+                                                    <span>Links</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="ec-support color-red"></i>
+                                                    <span>Support</span>
+                                                </a>
+                                            </div>
+                                            <div class="shortcut-button">
+                                                <a href="#">
+                                                    <i class="st-lock color-teal"></i>
+                                                    <span>Lock area</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"><i class="ec-pencil s24"></i></a> 
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu2">
+                                        <div class="option-dropdown">
+                                            <div class="row">
+                                                <p class="col-lg-12">Quick post</p>
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control" placeholder="Enter title">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <textarea class="form-control wysiwyg" placeholder="Enter text"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control tags1" placeholder="Enter tags">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <button class="btn btn-default btn-xs">Save Draft</button>
+                                                            <button class="btn btn-success btn-xs pull-right">Publish</button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3"><i class="ec-help s24"></i></a>
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu3">
+                                        <div class="option-dropdown">
+                                            <p>First time visitor ? <a href="#" id="app-tour" class="btn btn-success ml15">Take app tour</a> 
+                                            </p>
+                                            <hr>
+                                            <p>Or check the <a href="#" class="btn btn-danger ml15">FAQ</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <!-- Page start here ( usual with .row ) -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- Start col-lg-6 -->
+                            <div class="panel panel-default">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><i class="glyphicon-pencil"></i> Headings</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <h1>This is an H1 heading</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <h2>This is an H2 heading</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <h3>This is an H3 heading</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <h4>This is an H4 heading</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <h5>This is an H5 heading</h5>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <h6>This is an H6 heading</h6>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                            <div class="panel panel-default">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Emphasis</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="page-header">
+                                        <h4>Small Text</h4>
+                                    </div>
+                                    <small>This line of text is meant to be treated as fine print.</small>
+                                    <pre>
+                        <code class="html">&lt;small&gt;This line of text is meant to be treated as fine print.&lt;/small&gt;</code>
+                    </pre>
+                                    <div class="page-header">
+                                        <h4>Bold text</h4>
+                                    </div>
+                                    The following snippet of text is <strong>rendered as bold text.</strong>
+                                    <pre>
+                        <code class="html">The following snippet of text is &lt;strong&gt;rendered as bold text.&lt;/strong&gt;</code>
+                    </pre>
+                                    <div class="page-header">
+                                        <h4>Italics</h4>
+                                    </div>
+                                    The following snippet of text is
+                                    <em>rendered as italicized text.</em>
+                                    <pre>
+                        <code class="html">The following snippet of text is &lt;em&gt;rendered as italicized text.&lt;/em&gt;</code>
+                    </pre> 
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                            <div class="panel panel-default toggle">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Abbreviations</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="page-header">
+                                        <h4>Basic abbreviation</h4>
+                                    </div>
+                                    <p>An abbreviation of the word attribute is
+                                        <abbr title="attribute">attr</abbr>.</p>
+                                    <pre>
+                        <code class="html">&lt;abbr title="attribute"&gt;attr&lt;/abbr&gt;</code>
+                    </pre>
+                                    <div class="page-header">
+                                        <h4>Initialism</h4>
+                                    </div>
+                                    <p>
+                                        <abbr title="HyperText Markup Language" class="initialism">HTML</abbr>is the best thing since sliced bread.</p>
+                                    <pre>
+                        <code class="html">&lt;abbr title="HyperText Markup Language" class="initialism"&gt;HTML&lt;/abbr&gt;</code>
+                    </pre>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- End col-lg-6 -->
+                        <div class="col-lg-6">
+                            <!-- Start col-lg-6 -->
+                            <div class="panel panel-default">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><i class="glyphicon-pencil"></i> Paragraph</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-lg-12">
+                                        <!-- Start col-lg-12 -->
+                                        <div class="page-header">
+                                            <h4>Paragraph</h4>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                                            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                            mollit anim id est laborum.</p>
+                                        <pre><code class="html">&lt;p&gt;...&lt;/p&gt;</code></pre>
+                                        <div class="page-header">
+                                            <h4>Lead paragraph</h4>
+                                        </div>
+                                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <pre><code class="html">&lt;p class="lead" &gt;...&lt;/p&gt;</code></pre>
+                                    </div>
+                                    <!-- End col-lg-12 -->
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                            <div class="panel panel-default">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Alignment classes</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p class="text-left">Left aligned text.</p>
+                                    <pre><code class="html">&lt;p class="text-left"&gt;Left aligned text.&lt;/p&gt;</code></pre>
+                                    <p class="text-center">Center aligned text.</p>
+                                    <pre><code class="html">&lt;p class="text-center"&gt;Center aligned text.&lt;/p&gt;</code></pre>
+                                    <p class="text-right">Right aligned text.</p>
+                                    <pre><code class="html">&lt;p class="text-right"&gt;Right aligned text.&lt;/p&gt;</code></pre>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                            <div class="panel panel-default toggle">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Emphasis classes</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+                                    <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                    <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                                    <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                                    <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+                                    <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                    <pre>
+                    <code class="html">&lt;p class="text-muted"&gt;Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.&lt;/p&gt;
+&lt;p class="text-primary"&gt;Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
+&lt;p class="text-success"&gt;Duis mollis, est non commodo luctus, nisi erat porttitor ligula.&lt;/p&gt;
+&lt;p class="text-info"&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/p&gt;
+&lt;p class="text-warning"&gt;Etiam porta sem malesuada magna mollis euismod.&lt;/p&gt;
+&lt;p class="text-danger"&gt;Donec ullamcorper nulla non metus auctor fringilla.&lt;/p&gt;</code></pre> 
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                            <div class="panel panel-default toggle">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Blockquotes</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    </blockquote>
+                                    <pre><code class="html">&lt;blockquote&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.&lt;/p&gt;
+&lt;/blockquote&gt;</code>
+                    </pre>
+                                    <div class="page-header">
+                                        <h4>In the Right</h4>
+                                    </div>
+                                    <blockquote class="pull-right">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                            <div class="panel panel-default toggle">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Addresses</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <address>
+                                        <strong>Twitter, Inc.</strong>
+                                        <br>795 Folsom Ave, Suite 600
+                                        <br>San Francisco, CA 94107
+                                        <br>
+                                        <abbr title="Phone">P:</abbr>(123) 456-7890
+                                    </address>
+                                    <address>
+                                        <strong>Full Name</strong>
+                                        <br>
+                                        <a href="mailto:#">first.last@example.com</a>
+                                    </address>
+                                    <pre>
+                        <code class="html">&lt;address&gt;
+    &lt;strong>Twitter, Inc.&lt;/strong&gt;&lt;br&gt;
+    795 Folsom Ave, Suite 600&lt;br&gt;
+    San Francisco, CA 94107&lt;br&gt;
+    &lt;abbr title="Phone"&gt;P:&lt;/abbr&gt; (123) 456-7890
+&lt;/address&gt;
+&lt;address&gt;
+    &lt;strong&gt;Full Name&lt;/strong&gt;&lt;br&gt;
+    &lt;a href="mailto:#"&gt;first.last@example.com&lt;/a&gt;
+&lt;/address&gt;</code>
+                    </pre>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- End col-lg-6 -->
+                    </div>
+                    <!-- End .row -->
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End #content -->
+        
+    </body>
+</html>

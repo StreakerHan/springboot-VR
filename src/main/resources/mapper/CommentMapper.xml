@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.streaker.dao.CommentDao">
+
+    <sql id="BASE_TABLE">
+        t_comment
+    </sql>
+
+    <resultMap type="com.streaker.entity.Comment" id="Comment">
+        <id column="cid" property="cid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+        <id column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="cdate" property="cdate" javaType="java.util.Date" jdbcType="INTEGER"/>
+        <id column="comment" property="comment" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="email" property="email" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--发布文章-->
+    <insert id="addComment" parameterType="com.streaker.entity.Comment">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            cid, username,cdate, comment, email,
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{cid},#{username},#{cdate},#{comment},#{email},
+        </trim>
+    </insert>
+
+    <!--查询文章列表-->
+   <select id="getCommentList" parameterType="com.streaker.entity.Comment" resultType="com.streaker.entity.Comment">
+        SELECT * FROM <include refid="BASE_TABLE"/>
+    </select>
+
+    <!--根据id删除留言-->
+    <delete id="deleteComment">
+        DELETE FROM
+        <include refid="BASE_TABLE"/>
+        WHERE cid = #{cid}
+    </delete>
+
+    <!-- &lt;!&ndash;获取最新的4条文章&ndash;&gt;
+    <select id="getFormArticle" parameterType="com.streaker.entity.Article" resultType="com.streaker.entity.Article">
+        SELECT * FROM <include refid="BASE_TABLE"/>
+        ORDER BY aid DESC limit 4;
+    </select>-->
+</mapper>

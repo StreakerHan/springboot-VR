@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='comment'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+<body>
+<div th:replace="common::common-body"></div>
+
+<!-- Start #content -->
+<div id="content">
+    <!-- Start .content-wrapper -->
+    <div class="content-wrapper">
+        <div class="row">
+            <!-- Start .row -->
+            <!-- Start .page-header -->
+            <div class="col-lg-12 heading">
+                <h1 class="page-header"><i class="im-table2"></i>留言管理</h1>
+
+            </div>
+            <!-- End .page-header -->
+        </div>
+        <!-- End .row -->
+        <div class="outlet">
+            <!-- Start .outlet -->
+            <!-- Page start here ( usual with .row ) -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- col-lg-12 start here -->
+                    <div class="panel panel-default plain toggle panelClose panelRefresh">
+                        <!-- Start .panel -->
+                        <div class="panel-body">
+                            <table class="table display" id="datatable">
+                                <thead>
+                                <tr>
+                                    <th style=" text-align:center;">留言编号</th>
+                                    <th style=" text-align:center;">留言内容</th>
+                                    <th style=" text-align:center;">用户名称</th>
+                                    <th style=" text-align:center;">电子邮箱</th>
+                                    <th style=" text-align:center;">留言时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="comment : ${comments}">
+                                    <tr th:attr="aid=${comment.cid}" class="odd gradeX">
+                                        <td class="center" th:text="${comment.cid}"></td>
+                                        <td class="center" th:text="${comment.comment}"></td>
+                                        <td class="center" th:text="${comment.username}"></td>
+                                        <td class="center" th:text="${comment.email}"></td>
+                                        <td class="center" th:text="${comment.cdate}"></td>
+                                        <td>
+                                            <button type="button" class="btn btn-xs btn-danger" th:onclick="'javascript:delComment('+${comment.cid}+');'">删除留言</button>
+                                        </td>
+                                    </tr>
+                                </th:block >
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th style=" text-align:center;">留言编号</th>
+                                    <th style=" text-align:center;">留言内容</th>
+                                    <th style=" text-align:center;">用户名称</th>
+                                    <th style=" text-align:center;">电子邮箱</th>
+                                    <th style=" text-align:center;">留言时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- End .panel -->
+                </div>
+                <!-- col-lg-12 end here -->
+            </div>
+        </div>
+        <!-- End .outlet -->
+    </div>
+    <!-- End .content-wrapper -->
+    <div class="clearfix"></div>
+</div>
+<!-- End #content -->
+<script type="text/javascript">
+    function delComment(cid) {
+        $.ajax({
+            type: "POST",
+            data: {cid: cid},
+            url: "/delete/comment",
+            success: function (data) {
+                if (data.code == '0') {
+                    alert("删除成功！");
+                    window.location.href = ("/comment-manage");
+                } else {
+                    alert("删除失败！");
+                }
+            },
+        });
+    }
+</script>
+</body>
+</html>

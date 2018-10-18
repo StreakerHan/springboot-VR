@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.streaker.dao.ArticleDao">
+
+    <sql id="BASE_TABLE">
+        t_article
+    </sql>
+
+    <!-- 基本列 -->
+    <!--<sql id="BASE_COLUMN">
+        l.lid, l.uid, l.username, l.ldate, l.ip, l.role
+    </sql>-->
+
+    <resultMap type="com.streaker.entity.Article" id="Article">
+        <id column="aid" property="aid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+        <id column="uid" property="uid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+        <id column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="cdate" property="cdate" javaType="java.util.Date" jdbcType="INTEGER"/>
+        <id column="cdesc" property="cdesc" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="title" property="title" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="content" property="content" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="email" property="email" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--发布文章-->
+    <insert id="addArticle" parameterType="com.streaker.entity.Article">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+             uid, username,cdate, cdesc, title, content, email,
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+          #{uid},#{username},#{cdate},#{cdesc},#{title},#{content},#{email},
+        </trim>
+    </insert>
+
+    <!--查询文章列表-->
+    <select id="getArticleList" parameterType="com.streaker.entity.Article" resultType="com.streaker.entity.Article">
+        SELECT * FROM <include refid="BASE_TABLE"/>
+    </select>
+
+    <!--根据文章id删除文章-->
+    <delete id="deleteArticleById">
+        DELETE FROM
+        <include refid="BASE_TABLE"/>
+        WHERE aid = #{aid}
+    </delete>
+
+    <!--获取最新的4条文章-->
+    <select id="getFormArticle" parameterType="com.streaker.entity.Article" resultType="com.streaker.entity.Article">
+        SELECT * FROM <include refid="BASE_TABLE"/>
+        ORDER BY aid DESC limit 4;
+    </select>
+</mapper>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='home'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+<body>
+<div th:replace="common::common-body"></div>
+
+<!-- Start #content -->
+<div id="content">
+    <!-- Start .content-wrapper -->
+    <div class="content-wrapper">
+        <div class="row">
+            <!-- Start .row -->
+            <!-- Start .page-header -->
+            <div class="col-lg-12 heading">
+                <h1 class="page-header"><i class="im-checkbox-checked"></i> 发布文章</h1>
+            </div>
+            <!-- End .page-header -->
+        </div>
+        <!-- End .row -->
+        <!-- Page start here ( usual with .row ) -->
+        <div class="outlet">
+            <!-- Start .outlet -->
+            <div class="row">
+                <!-- Start .row -->
+                <div class="col-lg-12">
+                    <!-- Start col-lg-12 -->
+                    <div class="panel panel-default toggle">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">文章内容</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form class="form-horizontal group-border hover-stripped" role="form" id="validate">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">文章标题</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="title" id="title" class="form-control required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">作者邮箱</label>
+                                    <div class="col-lg-10">
+                                        <input id="email" name="email" type="email" class="form-control" th:value="${loginUser.email}"/>
+                                    </div>
+                                </div>
+                                <!-- End .form-group  -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">文章简介（10-20字）</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="cdesc" name="cdesc" placeholder="">
+                                    </div>
+                                </div>
+
+                                <!-- End .form-group  -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">作者名称</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="username" name="username" th:value="${loginUser.username}" readonly="true"/>
+                                    </div>
+                                </div>
+                                <!-- End .form-group  -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">文章内容</label>
+                                    <div class="col-lg-10">
+                                        <textarea class="form-control" name="content" id="textarea" rows="6"></textarea>
+                                    </div>
+                                </div>
+                                <!-- End .form-group  -->
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2">
+                                        <button class="btn btn-default ml15" type="submit" th:onclick="'javascript:saveArticle()'">发布文章</button>
+                                    </div>
+                                </div>
+                                <!-- End .form-group  -->
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End .panel -->
+                </div>
+                <!-- End col-lg-12 -->
+            </div>
+            <!-- End .row -->
+            <!-- Page End here -->
+        </div>
+        <!-- End .outlet -->
+    </div>
+    <!-- End .content-wrapper -->
+    <div class="clearfix"></div>
+</div>
+<!-- End #content -->
+<script type="text/javascript">
+    /*<![CDATA[*/
+    /*var tale = new $.tale();
+    function saveArticle() {
+        tale.get({
+            url : '/add-article',
+            data: $("#validate").serialize(),
+            success: function (result) {
+                if(result && result.code == '0'){
+                    alert("发布成功！");
+                    /!*window.location.href = '/article-add';*!/
+                } else {
+                    alert("发布失败！");
+                }
+            }
+        });
+    }*/
+
+    /*]]>*/
+
+    function saveArticle() {
+        $.ajax({
+            type: "POST",
+            data:  $("#validate").serialize(),
+            url: "/add-article",
+            success: function (data) {
+                if (data.code == '0') {
+                    alert("发布成功！");
+                    /*window.location.href = ("/article-add");*/
+                } else {
+                    alert("发布失败！");
+                }
+            },
+        });
+    }
+</script>
+
+
+</body>
+</html>

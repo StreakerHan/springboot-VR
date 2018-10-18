@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='home'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+       
+    <body>
+       <div th:replace="common::common-body"></div>
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="ec-user"></i> 个人设置</h1>
+                        <!-- Start .bredcrumb -->
+                        <!--<ul id="crumb" class="breadcrumb">
+                        </ul>-->
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+                        <div class="option-buttons">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a id="clear-localstorage" class="btn tip" title="Reset panels position">
+                                        <i class="ec-refresh color-red s24"></i>
+                                    </a>
+                                </div>
+
+                                <div class="btn-group dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"><i class="ec-pencil s24"></i></a> 
+                                    <div class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu2">
+                                        <div class="option-dropdown">
+                                            <div class="row">
+                                                <p class="col-lg-12">Quick post</p>
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control" placeholder="Enter title">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <textarea class="form-control wysiwyg" placeholder="Enter text"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control tags1" placeholder="Enter tags">
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                    <div class="form-group">
+                                                        <div class="col-lg-12">
+                                                            <button class="btn btn-default btn-xs">Save Draft</button>
+                                                            <button class="btn btn-success btn-xs pull-right">Publish</button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End .form-group  -->
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <!-- Page start here ( usual with .row ) -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <!-- col-lg-4 start here -->
+                            <div class="panel panel-default plain profile-widget">
+                                <div class="panel-heading white-bg pl0 pr0">
+                                    <img class="profile-image img-responsive" src="img/profile-cover.jpg" alt="profile cover">
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="profile-avatar">
+                                            <img class="img-responsive" src="img/avatars/132.jpg" alt="@roybarberuk">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12">
+                                        <div class="profile-name">
+                                            [[${loginUser.username}]] <span class="label label-success">admin</span>
+                                        </div>
+                                        <div class="profile-quote">
+                                            <p>Building new app with yeoman generator plus grunt and bower, it`s awesome</p>
+                                        </div>
+                                        <!--<div class="profile-stats-info">
+                                            <a href="#" class="tipB" title="Views"><i class="im-eye2"></i> <strong>5600</strong></a>
+                                            <a href="#" class="tipB" title="Comments"><i class="im-bubble"></i> <strong>75</strong></a>
+                                            <a href="#" class="tipB" title="Likes"><i class="im-heart"></i> <strong>45</strong></a>
+                                        </div>-->
+                                    </div>
+                                </div>
+                                <div class="panel-footer white-bg">
+                                    <ul class="profile-info">
+                                        <li><i class="ec-mobile"></i> [[${loginUser.phone}]]</li>
+                                        <!--<li><i class="ec-location"></i> Spain, Barcelona</li>-->
+                                        <li><i class="ec-mail"></i>[[${loginUser.email}]]</li>
+                                        <li><i class="im-office"></i> [[${loginUser.udate}]]</li>
+                                        <!--<li><i class="fa-bitbucket"></i> code@suggelab.com</li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- col-lg-4 end here -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <!-- col-lg-4 start here -->
+                            <div class="panel panel-default plain">
+                                <!-- Start .panel -->
+                                <div class="panel-heading white-bg">
+                                    <h4 class="panel-title"><i class="ec-user"></i> 修改个人信息</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-vertical hover-stripped" role="form"  id="user-form">
+                                        <div class="form-group">
+                                            <label class="control-label">User ID</label>
+                                            <input type="text" name="uid" class="form-control" th:value="${loginUser.uid}" readonly="true"/>
+                                           <!-- <a href="#" class="help-block color-red">Request new ?</a> -->
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Username</label>
+                                            <input type="text" name="username" class="form-control" th:value="${loginUser.username}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Email</label>
+                                            <input type="email" name="email" class="form-control" th:value="${loginUser.email}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">PhoneNumber</label>
+                                            <input type="text" name="phone" class="form-control" th:value="${loginUser.phone}"/>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label class="control-label">New password</label>
+                                            <input type="password" name="password" id="password1" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Repeat password</label>
+                                            <input type="password" name="password2" id="password2" class="form-control"  equalTo="#password1"/>
+                                        </div>-->
+                                        <div class="form-group mb15">
+                                            <button type="submit" class="btn btn-primary" onclick="saveSetting()">保存修改</button>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- col-lg-4 end here -->
+                    </div>
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <!--<div class="clearfix"></div>-->
+        </div>
+        <!-- End #content -->
+       <script type="text/javascript">
+           /*<![CDATA[*/
+           var tale = new $.tale();
+           function saveSetting() {
+               tale.post({
+                   url : '/admin/profile',
+                   data: $("#user-form").serialize(),
+                   success: function (result) {
+                       if(result && result.code == '0'){
+                           tale.alertOk('保存成功');
+                           /*alert("保存成功！")*/
+                           /*window.location.href = '/profile';*/
+                       } else {
+                           /*alert("保存失败！")*/
+                           tale.alertError(result.msg || '保存失败');
+                       }
+                   }
+               });
+           }
+
+           /*]]>*/
+       </script>
+    </body>
+</html>

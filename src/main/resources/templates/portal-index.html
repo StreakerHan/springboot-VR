@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>MyHome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- css -->
+    <link th:href="@{/portal/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/portal/css/fancybox/jquery.fancybox.css}" rel="stylesheet">
+    <link th:href="@{/portal/css/flexslider.css}" rel="stylesheet" />
+    <link th:href="@{/portal/css/style.css}" rel="stylesheet" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script th:src="@{//html5shim.googlecode.com/svn/trunk/html5.js}"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div id="wrapper" class="home-page">
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="pull-left hidden-xs"><i class="fa fa-clock-o"></i><span>Mon - Sat 8.00 - 18.00. Sunday CLOSED</span>
+                    <p class="pull-right"><i class="fa fa-phone"></i>Tel No. (+001) 123-456-789</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- start header -->
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="portal-index"><img th:src="@{/portal/img/logo.png}" alt="logo"/></a>
+                </div>
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="portal-index">Home</a></li>
+                        <li><a href="portal-contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header -->
+    <section id="banner">
+
+        <!-- Slider -->
+        <div id="main-slider" class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img th:src="@{/portal/img/slides/2.jpg}" alt="" />
+                    <div class="flex-caption">
+                        <h3>Gated Villas</h3>
+
+                    </div>
+                </li>
+                <li>
+                    <img th:src="@{/portal/img/slides/1.jpg}" alt="" />
+                    <div class="flex-caption">
+                        <h3>Trendy Home</h3>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- end slider -->
+
+    </section>
+
+
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="skill-home"> <div class="skill-home-solid clearfix">
+                    <th:block th:each="article:${articles}">
+                            <div class="col-md-3 col-sm-6 text-center">
+                                <span class="icons c4"><i class="fa fa-star"></i></span> <div class="box-area">
+                                <h3 th:text="${article.title}"></h3> <p th:text="${article.content}"></p></div>
+                            </div>
+                    </th:block>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title text-center">
+                        <h2><span class="coloured">Recent</span> Properties</h2>
+                        <p>Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada Pellentesque <br>ipsum id orci porta dapibus. Vivamus suscipit tortor eget felis porttitor volutpat.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row service-v1 margin-bottom-40">
+                <div class="col-sm-4 md-margin-bottom-40">
+                    <img class="img-responsive" th:src="@{/portal/img/img5.jpg}" alt="">
+                    <h3>Apartments</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
+                </div>
+                <div class="col-sm-4 md-margin-bottom-40">
+                    <img class="img-responsive" th:src="@{/portal/img/img6.jpg}" alt="">
+                    <h3>luxury Villas</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
+                </div>
+                <div class="col-sm-4 md-margin-bottom-40">
+                    <img class="img-responsive" th:src="@{/portal/img/img7.jpg}" alt="">
+                    <h3>Gated Projects</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
+                </div>
+            </div>
+            <div class="row service-v1 margin-bottom-40">
+                <div class="col-sm-4 md-margin-bottom-40">
+                    <img class="img-responsive" th:src="@{/portal/img/img8.jpg}" alt="">
+                    <h3>Apartments</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
+                </div>
+                <div class="col-sm-4 md-margin-bottom-40">
+                    <img class="img-responsive" th:src="@{/portal/img/img9.jpg}" alt="">
+                    <h3>luxury Villas</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
+                </div>
+                <div class="col-sm-4 md-margin-bottom-40">
+                    <img class="img-responsive" th:src="@{/portal/img/img10.jpg}" alt="">
+                    <h3>Gated Projects</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="widget">
+                        <h5 class="widgetheading">Our Contact</h5>
+                        <address>
+                            <strong>MyHome Inc</strong><br>
+                            JC Main Road, Near Silnile tower<br>
+                            Pin-21542 NewYork US.</address>
+                        <p>
+                            <i class="icon-phone"></i> (123) 456-789 - 1255-12584 <br>
+                            <i class="icon-envelope-alt"></i> email@domainname.com
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="widget">
+                        <h5 class="widgetheading">Quick Links</h5>
+                        <ul class="link-list">
+                            <li><a href="#">Latest Events</a></li>
+                            <li><a href="#">Terms and conditions</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="widget">
+                        <h5 class="widgetheading">Latest posts</h5>
+                        <ul class="link-list">
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                            <li><a href="#">Pellentesque et pulvinar enim. Quisque at tempor ligula</a></li>
+                            <li><a href="#">Natus error sit voluptatem accusantium doloremque</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="widget">
+                        <h5 class="widgetheading">Recent News</h5>
+                        <ul class="link-list">
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                            <li><a href="#">Pellentesque et pulvinar enim. Quisque at tempor ligula</a></li>
+                            <li><a href="#">Natus error sit voluptatem accusantium doloremque</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+<!-- javascript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/portal/js/jquery.js}"></script>
+<script th:src="@{/portal/js/jquery.easing.1.3.js}"></script>
+<script th:src="@{/portal/js/bootstrap.min.js}"></script>
+<script th:src="@{/portal/js/jquery.fancybox.pack.js}"></script>
+<script th:src="@{/portal/js/jquery.fancybox-media.js}"></script>
+<script th:src="@{/portal/js/jquery.flexslider.js}"></script>
+<script th:src="@{/portal/js/animate.js}"></script>
+<!-- Vendor Scripts -->
+<script th:src="@{/portal/js/modernizr.custom.js}"></script>
+<script th:src="@{/portal/js/jquery.isotope.min.js}"></script>
+<script th:src="@{/portal/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/portal/js/animate.js}"></script>
+<script th:src="@{/portal/js/custom.js}"></script>
+</body>
+</html>
