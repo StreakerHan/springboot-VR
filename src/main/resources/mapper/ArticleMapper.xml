@@ -6,11 +6,6 @@
         t_article
     </sql>
 
-    <!-- 基本列 -->
-    <!--<sql id="BASE_COLUMN">
-        l.lid, l.uid, l.username, l.ldate, l.ip, l.role
-    </sql>-->
-
     <resultMap type="com.streaker.entity.Article" id="Article">
         <id column="aid" property="aid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
         <id column="uid" property="uid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>

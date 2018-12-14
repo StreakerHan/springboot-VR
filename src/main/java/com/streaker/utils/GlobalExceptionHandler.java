@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = AuthorizationException.class)
     public String handleAuthorizationException() {
-        System.out.println("**********调用异常捕捉类");
+        //System.out.println("**********调用异常捕捉类");
         return "403";
     }
 }

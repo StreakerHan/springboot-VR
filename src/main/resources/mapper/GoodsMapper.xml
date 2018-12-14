@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.streaker.dao.HomeDao">
+
+    <sql id="BASE_TABLE">
+        t_home
+    </sql>
+
+    <resultMap type="com.streaker.entity.Home" id="Home">
+        <id column="hid" property="hid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+        <id column="uid" property="uid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+        <id column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="hdate" property="hdate" javaType="java.util.Date" jdbcType="INTEGER"/>
+        <id column="introduce" property="introduce" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="title" property="title" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="url" property="url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="picurl" property="picurl" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 新增商品记录 -->
+    <insert id="addHome" parameterType="com.streaker.entity.Home">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uid, username, hdate, introduce, title , url, picurl,
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{uid},  #{username}, #{hdate}, #{introduce}, #{title}, #{url} ,#{picurl}
+        </trim>
+    </insert>
+
+    <!--查询全部商品-->
+    <select id="getHomeList" resultType="com.streaker.entity.Home">
+        SELECT
+        *
+        FROM
+        <include refid="BASE_TABLE"/>
+    </select>
+
+    <!--根据id删除商品-->
+    <delete id="deleteArticleById">
+        DELETE FROM
+        <include refid="BASE_TABLE"/>
+        WHERE hid = #{hid}
+    </delete>
+
+    <!--获取最新的6条商品-->
+    <select id="getHomeRecently" parameterType="com.streaker.entity.Home" resultType="com.streaker.entity.Home">
+        SELECT * FROM <include refid="BASE_TABLE"/>
+        ORDER BY hid DESC limit 6;
+    </select>
+
+</mapper>

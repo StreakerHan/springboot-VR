@@ -13,7 +13,7 @@ public class Home {
 
     private String title;
 
-    private String desc;
+    private String introduce;
 
     private String url;
 
@@ -22,6 +22,16 @@ public class Home {
     private Integer uid;
 
     private String username;
+
+    private String picurl;
+
+    public String getPicurl() {
+        return picurl;
+    }
+
+    public void setPicurl(String picurl) {
+        this.picurl = picurl;
+    }
 
     public Integer getHid() {
         return hid;
@@ -39,12 +49,12 @@ public class Home {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getIntroduce() {
+        return introduce;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce == null ? null : introduce.trim();
     }
 
     public String getUrl() {

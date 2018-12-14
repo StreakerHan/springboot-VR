@@ -7,6 +7,7 @@ import com.streaker.service.UserService;
 import com.streaker.utils.Constant;
 import com.streaker.utils.MD5Utils;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -15,9 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.HttpSession;
-import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -69,7 +69,7 @@ public class UserController {
         Subject subject = SecurityUtils.getSubject();
         try{
             subject.login(token);
-            System.out.println("******************" + token.toString());
+            //System.out.println("******************" + token.toString());
             //根据Subject中的用户名获取用户id
             User user2 = (User) SecurityUtils.getSubject().getPrincipal();
             String un = user2.getUsername();
@@ -162,7 +162,7 @@ public class UserController {
     public  ResponseBo updateUserAdmin(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
         User user = userService.getUserById(uid);
         userService.updateUserAdmin(user);
-        System.out.println("****将用户id为"+uid+"的用户设置为管理员！****");
+        //System.out.println("****将用户id为"+uid+"的用户设置为管理员！****");
         return ResponseBo.ok();
     }
 
@@ -174,7 +174,7 @@ public class UserController {
     public  ResponseBo updateUserBlack(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
         User user = userService.getUserById(uid);
         userService.updateUserBlack(user);
-        System.out.println("****将用户id为"+uid+"的用户设置为黑名单！****");
+        //System.out.println("****将用户id为"+uid+"的用户设置为黑名单！****");
         return ResponseBo.ok();
     }
 
@@ -186,7 +186,7 @@ public class UserController {
     public  ResponseBo updateBlackUser(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
         User user = userService.getUserById(uid);
         userService.updateBlackUser(user);
-        System.out.println("****将黑名单id为"+uid+"的用户设置为普通用户！****");
+        //System.out.println("****将黑名单id为"+uid+"的用户设置为普通用户！****");
         return ResponseBo.ok();
     }
 
@@ -215,7 +215,7 @@ public class UserController {
     @ResponseBody
     public ResponseBo delUser(@RequestParam(name = "uid") Integer uid){
         userService.deleteUser(uid);
-        System.out.println("******删除用户"+ uid);
+        //System.out.println("******删除用户"+ uid);
         return  ResponseBo.ok();
     }
 

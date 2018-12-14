@@ -41,7 +41,7 @@ public class ArticleController {
         User user1 = userService.getUserByUsername(username);
         uid = user1.getUid();
         articleService.addArticle(title,email,username,cdesc,content,uid,new Date());
-        System.out.println("######" + username + uid + title);
+        //System.out.println("######" + username + uid + title);
 
         return ResponseBo.ok();
     }
@@ -53,8 +53,8 @@ public class ArticleController {
     public String getArticleList(HttpServletRequest request){
         List<Article> articles = articleService.getArticleList();
         request.setAttribute("articles",articles);
-        System.out.println("#####文章列表");
-        System.out.println(articles.toString());
+        //System.out.println("#####文章列表");
+        //System.out.println(articles.toString());
         return "article-manage";
     }
 
@@ -65,7 +65,7 @@ public class ArticleController {
     @ResponseBody
     public ResponseBo delArticle(@RequestParam("aid") Integer aid){
         articleService.deleteArticleById(aid);
-        System.out.println("删除文章" + aid + "成功！");
+        //System.out.println("删除文章" + aid + "成功！");
         return  ResponseBo.ok();
     }
 

@@ -41,7 +41,7 @@ public class CommentController {
     @ResponseBody
     public ResponseBo delComment(@RequestParam(value = "cid") Integer cid){
         commentService.deleteComment(cid);
-        System.out.println("&&&&&&&&删除的留言"+ cid);
+        //System.out.println("&&&&&&&&删除的留言"+ cid);
         return ResponseBo.ok();
     }
 }

@@ -40,7 +40,7 @@ public class ShiroRealm extends AuthorizingRealm{
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         String userName = user.getUsername();
 
-        System.out.println("用户" + userName + "获取权限-----ShiroRealm.doGetAuthorizationInfo");
+        //System.out.println("用户" + userName + "获取权限-----ShiroRealm.doGetAuthorizationInfo");
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 
         // 获取用户角色集
@@ -68,18 +68,18 @@ public class ShiroRealm extends AuthorizingRealm{
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String userName = (String) token.getPrincipal();
         String password = new String((char[]) token.getCredentials());
-        System.out.println("******"+token.toString() + "加密后的密码："+password);
+        //System.out.println("******"+token.toString() + "加密后的密码："+password);
         User user = userDao.getUserByUsername(userName);
         if (user == null) {
-            System.out.println("****用户名不存在****");
+            //System.out.println("****用户名不存在****");
             throw new UnknownAccountException("用户名不存在！");
         }
         if (!password.equals(user.getPassword())) {
-            System.out.println("****用户名或密码错误！****");
+            //System.out.println("****用户名或密码错误！****");
             throw new IncorrectCredentialsException("用户名或密码错误！");
         }
         if (user.getRole().equals("0")) {
-            System.out.println("****账号已被锁定,请联系管理员！****");
+            //System.out.println("****账号已被锁定,请联系管理员！****");
             throw new LockedAccountException("账号已被锁定,请联系管理员！");
         }
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, getName());

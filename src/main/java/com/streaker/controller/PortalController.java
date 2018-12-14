@@ -8,10 +8,7 @@ import com.streaker.service.CommentService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -31,6 +28,7 @@ public class PortalController {
     @Autowired
     private CommentService commentService;
 
+
     /**
      * 前台展示文章列表
      */
@@ -38,7 +36,7 @@ public class PortalController {
     public String potalIndexShow(HttpServletRequest request){
         List<Article> articles = articleService.getFormArticle();
         request.setAttribute("articles",articles);
-        System.out.println("####前台展示最新4条文章" + articles.toString());
+        //System.out.println("####前台展示最新4条文章" + articles.toString());
         return "portal-index";
     }
 
@@ -57,7 +55,7 @@ public class PortalController {
         comment1.setCdate(new Date());
         comment1.setEmail(email);
         commentService.addComment(comment1);
-        System.out.println("%%%%%%%%%%%%%用户留言：" + username + comment );
+        //System.out.println("%%%%%%%%%%%%%用户留言：" + username + comment );
         return ResponseBo.ok();
 
     }

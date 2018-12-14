@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8090
 
 spring:
   datasource:
@@ -8,7 +8,8 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/vrhome?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
-      password: HYPHYPHYP123   
+      password: HYPHYPHYP123
+
       # 连接池配置
       initial-size: 5
       min-idle: 5
@@ -32,7 +33,12 @@ spring:
       # Spring监控AOP切入点，如x.y.z.service.*,配置多个英文逗号分隔
       aop-patterns: com.streaker.servie.*
       
-    
+  servlet:
+      #设置最大上传文件限制
+      multipart:
+        max-file-size: 1000MB
+        max-request-size: 1000MB
+
       # WebStatFilter配置
       web-stat-filter:
         enabled: true

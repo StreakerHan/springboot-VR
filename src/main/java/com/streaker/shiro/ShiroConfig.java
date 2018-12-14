@@ -38,7 +38,9 @@ public class ShiroConfig {
 
         /*filterChainDefinitionMap.put("/index", "user");*/
        /* filterChainDefinitionMap.put("/**", "user");*/
-
+        filterChainDefinitionMap.put("/portal-index", "anon");
+        filterChainDefinitionMap.put("/portal-contact", "anon");
+        filterChainDefinitionMap.put("/portal/**","anon");
         filterChainDefinitionMap.put("/favicon.ico", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
@@ -46,7 +48,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/img/**", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/", "anon");
+
         filterChainDefinitionMap.put("/**", "user");
         /*filterChainDefinitionMap.put("/**", "authc");*/
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='home'">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='good'">
 <header th:replace="common::headerFragment(${title},${active})"></header>
 <body>
 <div th:replace="common::common-body"></div>
@@ -12,7 +12,7 @@
             <!-- Start .row -->
             <!-- Start .page-header -->
             <div class="col-lg-12 heading">
-                <h1 class="page-header"><i class="im-checkbox-checked"></i> 发布文章</h1>
+                <h1 class="page-header"><i class="im-checkbox-checked"></i> 添加房产商品</h1>
             </div>
             <!-- End .page-header -->
         </div>
@@ -27,48 +27,53 @@
                     <div class="panel panel-default toggle">
                         <!-- Start .panel -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">文章内容</h3>
+                            <h3 class="panel-title">商品详情</h3>
                         </div>
-                        <div class="panel-body">
-                            <form class="form-horizontal group-border hover-stripped" role="form" id="validate">
+                        <div class="panel-body"><!--enctype="multipart/form-data"-->
+                            <form class="form-horizontal group-border hover-stripped" role="form" id="validate"
+                                   method="post" onsubmit="return false">
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">文章标题</label>
+                                    <label class="col-lg-2 control-label">商品标题</label>
                                     <div class="col-lg-6">
-                                        <input type="text" name="title" id="title" class="form-control required">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">作者邮箱</label>
-                                    <div class="col-lg-6">
-                                        <input id="email" name="email" type="email" class="form-control" th:value="${loginUser.email}"/>
+                                        <input type="text" name="title" id="title" class="form-control" >
                                     </div>
                                 </div>
                                 <!-- End .form-group  -->
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">文章简介（10-20字）</label>
+                                    <label class="col-lg-2 control-label">商品简介（10-20字）</label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="cdesc" name="cdesc" placeholder="">
+                                        <input type="text" class="form-control" id="introduce" name="introduce" placeholder="">
                                     </div>
                                 </div>
 
                                 <!-- End .form-group  -->
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">作者名称</label>
+                                    <label class="col-lg-2 control-label">上传者名称</label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" id="username" name="username" th:value="${loginUser.username}" readonly="true"/>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">封面图片</label>
+                                    <div class="col-lg-6">
+                                        <input type="file" class="form-control" id="picurl" name="picurl">
+                                        <span class="help-block">用于显示在商品的封面</span>
+                                    </div>
+                                </div>
+
                                 <!-- End .form-group  -->
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">文章内容</label>
+                                    <label class="col-lg-2 control-label">上传商品模型</label>
                                     <div class="col-lg-6">
-                                        <textarea class="form-control" name="content" id="textarea" rows="6"></textarea>
+                                        <input type="file" name="url" id="url" class="form-control"  webkitdirectory mozdirectory />
+                                        <span class="help-block">上传的文件夹为Unity导出的整个文件夹（包括2个子文件夹1个index.html界面）</span>
                                     </div>
                                 </div>
                                 <!-- End .form-group  -->
                                 <div class="form-group">
                                     <div class="col-lg-offset-2">
-                                        <button class="btn btn-default ml15" type="submit" th:onclick="'javascript:saveArticle()'">发布文章</button>
+                                        <button class="btn btn-default ml15" type="submit" th:onclick="'javascript:saveGood()'">商品上架</button>
                                     </div>
                                 </div>
                                 <!-- End .form-group  -->
@@ -89,42 +94,24 @@
 </div>
 <!-- End #content -->
 <script type="text/javascript">
-    /*<![CDATA[*/
-    /*var tale = new $.tale();
-    function saveArticle() {
-        tale.get({
-            url : '/add-article',
-            data: $("#validate").serialize(),
-            success: function (result) {
-                if(result && result.code == '0'){
-                    alert("发布成功！");
-                    /!*window.location.href = '/article-add';*!/
-                } else {
-                    alert("发布失败！");
-                }
-            }
-        });
-    }*/
 
-    /*]]>*/
-
-    function saveArticle() {
-        $.ajax({
-            type: "POST",
-            data:  $("#validate").serialize(),
-            url: "/add-article",
-            success: function (data) {
-                if (data.code == '0') {
-                    alert("发布成功！");
-                    /*window.location.href = ("/article-add");*/
-                } else {
-                    alert("发布失败！");
-                }
-            },
-        });
+    function saveGood() {
+            var formdata = new FormData($("#validate")[0]);
+            $.ajax({
+                type: 'POST',
+                data: formdata,
+                url: '/add-good',
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.code == '0') {
+                        alert("添加成功！");
+                    } else {
+                        alert("添加失败！");
+                    }
+                },
+            });
     }
 </script>
-
-
 </body>
 </html>
