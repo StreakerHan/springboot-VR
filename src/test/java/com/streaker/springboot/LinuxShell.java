@@ -1,11 +1,12 @@
 package com.streaker.springboot;
 
-import ch.ethz.ssh2.Connection;
-import ch.ethz.ssh2.Session;
-import ch.ethz.ssh2.StreamGobbler;
-import org.apache.commons.lang3.StringUtils;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * 远程操作linux
@@ -15,7 +16,7 @@ import java.io.*;
  **/
 public class LinuxShell {
     //字符编码默认是utf-8
-    private static String  DEFAULTCHART="UTF-8";
+   /* private static String  DEFAULTCHART="UTF-8";
     private static Connection conn;
     private String ip;
     private String userName;
@@ -31,12 +32,12 @@ public class LinuxShell {
 
     }
 
-    /**
+    *//**
      * 远程登录linux的主机
      * @since  V0.1
      * @return
      *      登录成功返回true，否则返回false
-     */
+     *//*
     public Boolean login(){
         boolean flg=false;
         try {
@@ -51,14 +52,14 @@ public class LinuxShell {
         }
         return flg;
     }
-    /**
+    *//**
      * 远程执行shll脚本或者命令
      * @param cmd
      *      即将执行的命令
      * @return
      *      命令执行完后返回的结果值
      * @since V0.1
-     */
+     *//*
     public String execute(String cmd){
         String result="";
         try {
@@ -80,14 +81,14 @@ public class LinuxShell {
     }
 
 
-    /**
+    *//**
      * 远程执行shll脚本或者命令
      * @param cmd
      *      即将执行的命令
      * @return
      *      命令执行成功后返回的结果值，如果命令执行失败，返回空字符串，不是null
      * @since V0.1
-     */
+     *//*
     public String executeSuccess(String cmd){
         String result="";
         try {
@@ -104,14 +105,15 @@ public class LinuxShell {
         return result;
     }
 
-    /**
+    *//**
      * 解析脚本执行返回的结果集
+     * @author Ickes
      * @param in 输入流对象
      * @param charset 编码
      * @since V0.1
      * @return
      *       以纯文本的格式返回
-     */
+     *//*
     public static String processStdout(InputStream in, String charset){
         InputStream    stdout = new StreamGobbler(in);
         StringBuffer buffer = new StringBuffer();;
@@ -201,5 +203,48 @@ public class LinuxShell {
     }
     public void setUserPwd(String userPwd) {
         this.userPwd = userPwd;
+    }*/
+
+    public static String exec(String host,String user,String psw,int port,String command){
+        String result="";
+        Session session =null;
+        ChannelExec openChannel =null;
+        try {
+            JSch jsch=new JSch();
+            session = jsch.getSession(user, host, port);
+            java.util.Properties config = new java.util.Properties();
+            config.put("StrictHostKeyChecking", "no");
+            session.setConfig(config);
+            session.setPassword(psw);
+            session.connect();
+            openChannel = (ChannelExec) session.openChannel("exec");
+            openChannel.setCommand(command);
+            int exitStatus = openChannel.getExitStatus();
+            System.out.println(exitStatus);
+            openChannel.connect();
+            InputStream in = openChannel.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            String buf = null;
+            while ((buf = reader.readLine()) != null) {
+                result+= new String(buf.getBytes("gbk"),"UTF-8")+"    <br>\r\n";
+            }
+        } catch (Exception e) {
+            result+=e.getMessage();
+        }finally{
+            if(openChannel!=null&&!openChannel.isClosed()){
+                openChannel.disconnect();
+            }
+            if(session!=null&&session.isConnected()){
+                session.disconnect();
+            }
+        }
+        return result;
+    }
+
+
+
+    public static void main(String args[]){
+        String exec = exec("101.132.64.128", "root", "HYPHYPHYPhyp123", 22, "tar -zxvf /home/admin/123.tar.gz -C /home/admin/");
+        System.out.println(exec);
     }
 }

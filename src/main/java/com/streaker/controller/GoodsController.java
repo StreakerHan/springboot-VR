@@ -54,11 +54,12 @@ public class GoodsController {
         String fileName = picurl.getOriginalFilename();
         InputStream inputStream = picurl.getInputStream();
         String picUrl = FtpUtil.uploadFile(fileName,inputStream);
-        //System.out.println(picUrl);
         home.setPicurl(picUrl);
         //上传模型
-        //String url1 = FtpUtil.uploadFileModel(url);
-        home.setUrl("url");
+        String fileName1 = url.getOriginalFilename();
+        InputStream inputStream1 = url.getInputStream();
+        String Url = FtpUtil.uploadFileModel(fileName1,inputStream1);
+        home.setUrl(Url);
 
         home.setHdate(new Date());
         home.setUid(uid);

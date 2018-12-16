@@ -3,7 +3,6 @@ package com.streaker.utils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
@@ -27,6 +26,10 @@ public class FtpUtil {
     private static final String FTP_PASSWORD = "admin";
     //文件路径
     private static final String FTP_BASEPATH = "/home/admin";
+    //服务器名
+    private static final String HOST_USERNAME = "root";
+    //服务器登录密码
+    private static final String HOST_PASSWORD = "HYPHYPHYPhyp123";
     //返回的文件路径
     private static String file_path = "";
     //文件上传到服务器时重命名
@@ -70,7 +73,8 @@ public class FtpUtil {
     }
 
     //上传模型文件夹
-    public  static String uploadFileModel(File file) throws IOException{
+    public  static String uploadFileModel(String originFileName,InputStream input) throws IOException{
+        //String newName = null;
         FTPClient ftp = new FTPClient();
         ftp.setControlEncoding("UTF-8");
         try {
@@ -83,25 +87,21 @@ public class FtpUtil {
                 throw new IOException("ftp登录失败");
             }
             ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
-            //ftp.makeDirectory(FTP_BASEPATH );
-            String basePath = UUID.randomUUID().toString().replace("-","");
-            ftp.changeWorkingDirectory(FTP_BASEPATH);
-            ftp.makeDirectory(basePath);
-            ftp.changeWorkingDirectory(basePath);
-            /*String[] files = file.list();
-            for(int i = 0; i < files.length; i++){
-                File file1 = new File(basePath + "\\" + files[i]);
-                if(file1.isDirectory()){
-                    uploadFileModel(file);
-                    ftp.changeToParentDirectory();
-                }else{
-                    File file2 = new File(basePath + "\\" + files[i]);
-                    FileInputStream input = new FileInputStream(file2);
-                    ftp.storeFile(file.getName(),input);
-                    input.close();
-                }
-            }*/
+            ftp.changeWorkingDirectory(FTP_BASEPATH );
+            String fileNamePrefix = originFileName.substring(0,originFileName.lastIndexOf("."));
+            String fileNameSuffix = originFileName.substring(originFileName.lastIndexOf(".") + 1);
+            //originFileName = originFileNameUUID;
+            //上传压缩包
+            //重命名压缩包，防止名字重复，上传出错
+            String originFileName1 = UUID.randomUUID().toString().replace("-","");
+            ftp.storeFile(originFileName1+ "." + fileNameSuffix,input);
+            //执行解压操作，并将解压后的文件夹重命名
+            String originFileNameUUID = UUID.randomUUID().toString().replace("-","");
+            originFileName = originFileNameUUID;
+            LinuxShell.UnZipAfterUpload(originFileName1 + "." + fileNameSuffix,originFileName,fileNamePrefix,FTP_ADDRESS,HOST_USERNAME,HOST_PASSWORD);
+            input.close();
             ftp.logout();
+            //success = true;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -112,7 +112,7 @@ public class FtpUtil {
                 }
             }
         }
-        file_path = FTP_ADDRESS + ":" + NGINX_PORT + "/";
+        file_path = FTP_ADDRESS + ":" + NGINX_PORT + "/" + originFileName + "/"+"index.html";
         return file_path;
     }
 }
