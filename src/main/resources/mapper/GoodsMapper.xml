@@ -15,6 +15,7 @@
         <id column="title" property="title" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <id column="url" property="url" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <id column="picurl" property="picurl" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <id column="is_show" property="is_show" javaType="java.lang.String" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!-- 新增商品记录 -->
@@ -22,10 +23,10 @@
         INSERT INTO
         <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            uid, username, hdate, introduce, title , url, picurl,
+            uid, username, hdate, introduce, title , url, picurl, is_show,
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            #{uid},  #{username}, #{hdate}, #{introduce}, #{title}, #{url} ,#{picurl}
+            #{uid},  #{username}, #{hdate}, #{introduce}, #{title}, #{url} ,#{picurl},#{is_show}
         </trim>
     </insert>
 

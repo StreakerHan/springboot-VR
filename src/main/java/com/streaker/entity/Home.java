@@ -25,6 +25,16 @@ public class Home {
 
     private String picurl;
 
+    private String is_show;
+
+    public String getIsShow() {
+        return is_show;
+    }
+
+    public void setIsShow(String is_show) {
+        this.is_show = is_show;
+    }
+
     public String getPicurl() {
         return picurl;
     }
