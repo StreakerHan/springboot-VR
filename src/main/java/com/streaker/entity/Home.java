@@ -9,7 +9,7 @@ import java.util.Date;
  * @version 2018/9/6 10:24:25
  **/
 public class Home {
-    private Integer hid;
+    private String hid;
 
     private String title;
 
@@ -43,11 +43,11 @@ public class Home {
         this.picurl = picurl;
     }
 
-    public Integer getHid() {
+    public String getHid() {
         return hid;
     }
 
-    public void setHid(Integer hid) {
+    public void setHid(String hid) {
         this.hid = hid;
     }
 

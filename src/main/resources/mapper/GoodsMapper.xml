@@ -7,7 +7,7 @@
     </sql>
 
     <resultMap type="com.streaker.entity.Home" id="Home">
-        <id column="hid" property="hid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+        <id column="hid" property="hid" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <id column="uid" property="uid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
         <id column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <id column="hdate" property="hdate" javaType="java.util.Date" jdbcType="INTEGER"/>
@@ -23,10 +23,10 @@
         INSERT INTO
         <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            uid, username, hdate, introduce, title , url, picurl, is_show,
+            hid, uid, username, hdate, introduce, title , url, picurl, is_show,
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            #{uid},  #{username}, #{hdate}, #{introduce}, #{title}, #{url} ,#{picurl},#{is_show}
+            #{hid}, #{uid},  #{username}, #{hdate}, #{introduce}, #{title}, #{url} ,#{picurl},#{is_show}
         </trim>
     </insert>
 
@@ -39,11 +39,11 @@
     </select>
 
     <!--根据id删除商品-->
-    <delete id="deleteArticleById">
+    <!--<delete id="deleteArticleById">
         DELETE FROM
         <include refid="BASE_TABLE"/>
         WHERE hid = #{hid}
-    </delete>
+    </delete>-->
 
     <!--获取最新的6条商品-->
     <select id="getHomeRecently" parameterType="com.streaker.entity.Home" resultType="com.streaker.entity.Home">

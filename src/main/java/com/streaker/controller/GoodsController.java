@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 商品控制器类
@@ -47,6 +48,8 @@ public class GoodsController {
         User user1 = userService.getUserByUsername(username);
         uid = user1.getUid();
         Home home = new Home();
+        String uuid = UUID.randomUUID().toString().replace("-","");
+        home.setHid(uuid);
         home.setTitle(title);
         home.setIntroduce(introduce);
         home.setUsername(username);
@@ -60,9 +63,8 @@ public class GoodsController {
         InputStream inputStream1 = url.getInputStream();
         String Url = FtpUtil.uploadFileModel(fileName1,inputStream1);
         home.setUrl(Url);
-
-        home.setHdate(new Date());
         home.setUid(uid);
+        home.setHdate(new Date());
         goodsService.addHome(home);
         return ResponseBo.ok();
     }

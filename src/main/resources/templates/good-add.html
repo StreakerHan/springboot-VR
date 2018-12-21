@@ -96,6 +96,12 @@
 <!-- End #content -->
 <script type="text/javascript">
 
+    /*$(saveGood).ready(function(){
+
+        $('content').append("<div style='display:none;width:100%; margin:0 auto;position:fixed;left:0;top:0;bottom: 0;z-index: 111;opacity: 0.5;' id='loading'><a class='mui-active' style='left: 50%;position: absolute;top:50%'><span class='mui-spinner'></span><p style='margin-left: -10px;'><h3>文件上传中...</h3></p></a></div>")
+
+    })
+*/
     function saveGood() {
             var formdata = new FormData($("#validate")[0]);
             $.ajax({
@@ -113,6 +119,17 @@
                 },
             });
     }
+   /* $(saveGood).ajaxStart(function(){
+
+        $("#loading").show();
+
+    })
+
+    $(saveGood).ajaxComplete(function(){
+
+        $("#loading").hide();
+
+    })*/
 </script>
 </body>
 </html>
