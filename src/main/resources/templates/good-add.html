@@ -71,6 +71,10 @@
                                         <span class="help-block">压缩包上传之后自动解压</span>
                                     </div>
                                 </div>
+                                <div id="loadImg" style="display:none;">
+                                    <label class="col-lg-2 control-label">文件上传中</label><img th:src="@{/img/load2.gif}"  id="oImg" th:width="200" th:height="30"/>
+                                </div>
+                                <!--<div id="schedule"></div>-->
                                 <!-- End .form-group  -->
                                 <div class="form-group">
                                     <div class="col-lg-offset-2">
@@ -96,13 +100,9 @@
 <!-- End #content -->
 <script type="text/javascript">
 
-    /*$(saveGood).ready(function(){
-
-        $('content').append("<div style='display:none;width:100%; margin:0 auto;position:fixed;left:0;top:0;bottom: 0;z-index: 111;opacity: 0.5;' id='loading'><a class='mui-active' style='left: 50%;position: absolute;top:50%'><span class='mui-spinner'></span><p style='margin-left: -10px;'><h3>文件上传中...</h3></p></a></div>")
-
-    })
-*/
     function saveGood() {
+        /*$(".url").change(function() {*/
+        document.getElementById("loadImg").style.display=""
             var formdata = new FormData($("#validate")[0]);
             $.ajax({
                 type: 'POST',
@@ -112,24 +112,21 @@
                 contentType: false,
                 success: function (data) {
                     if (data.code == '0') {
+                        //document.getElementById("loadImg").style.display="none";
                         alert("添加成功！");
+                        window.location.reload();
                     } else {
+                        document.getElementById("loadImg").style.display="none";
                         alert("添加失败！");
+                        //window.location.href("index");
                     }
                 },
             });
+       /* });*/
     }
-   /* $(saveGood).ajaxStart(function(){
 
-        $("#loading").show();
-
-    })
-
-    $(saveGood).ajaxComplete(function(){
-
-        $("#loading").hide();
-
-    })*/
 </script>
+<style>
+</style>
 </body>
 </html>
