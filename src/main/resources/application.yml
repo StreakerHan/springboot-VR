@@ -77,4 +77,6 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   property:
     order: BEFORE
-     
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

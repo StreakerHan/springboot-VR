@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='good'">
+<header th:replace="common::headerFragment(${title},${active})"></header>
+<body>
+<div th:replace="common::common-body"></div>
+
+<!-- Start #content -->
+<div id="content">
+    <!-- Start .content-wrapper -->
+    <div class="content-wrapper">
+        <div class="row">
+            <!-- Start .row -->
+            <!-- Start .page-header -->
+            <div class="col-lg-12 heading">
+                <h1 class="page-header"><i class="im-table2"></i>商品管理</h1>
+
+            </div>
+            <!-- End .page-header -->
+        </div>
+        <!-- End .row -->
+        <div class="outlet">
+            <!-- Start .outlet -->
+            <!-- Page start here ( usual with .row ) -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- col-lg-12 start here -->
+                    <div class="panel panel-default plain toggle panelClose panelRefresh">
+                        <!-- Start .panel -->
+                        <div class="panel-body">
+                            <table class="table display" id="datatable">
+                                <thead>
+                                <tr>
+                                    <th style=" text-align:center;">商品编号</th>
+                                    <th style=" text-align:center;">商品标题</th>
+                                    <th style=" text-align:center;">商品简介</th>
+                                    <th style=" text-align:center;">封面图片</th>
+                                    <th style=" text-align:center;">模型地址</th>
+                                    <th style=" text-align:center;">上传作者</th>
+                                    <th style=" text-align:center;">状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!--/*@thymesVar id="users" type=""*/-->
+                                <th:block th:each="user : ${users}">
+                                    <tr th:attr="uid=${user.uid}" class="odd gradeX">
+                                        <td class="center" th:text="${user.uid}"></td>
+                                        <td class="center" th:text="${user.username}"></td>
+                                        <td class="center" th:text="${user.phone}"></td>
+                                        <td class="center" th:text="${user.email}"></td>
+                                        <td class="center" th:text="${user.udate}"></td>
+                                        <td class="center">
+                                            <th:block th:if="${user.role == '2'}">
+                                                <button type="button" class="btn btn-xs btn-primary">管理员</button>
+                                            </th:block>
+                                            <th:block th:if="${user.role == '1'}">
+                                                <button type="button" class="btn btn-xs btn-success">普通用户</button>
+                                            </th:block>
+                                            <th:block th:if="${user.role == '0'}">
+                                                <button type="button" class="btn btn-xs btn-dark">黑名单</button>
+                                            </th:block>
+                                        </td>
+                                        <td>
+                                            <!--<button type="button" class="btn btn-xs" th:onclick="'showInfo('+${user.uid}+');'">查看信息</button>-->
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    更多
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <th:block th:if="${user.role != '2'}">
+                                                        <li>
+                                                            <a th:onclick="'javascript:delUser('+${user.uid}+');'">删除用户</a>
+                                                        </li>
+                                                    </th:block>
+                                                    <th:block th:if="${user.role == '2'}">
+                                                        <li>
+                                                            <a href="#">没有权限</a>
+                                                        </li>
+                                                    </th:block>
+                                                    <th:block th:if="${user.role == '1'}">
+                                                        <li>
+                                                            <a th:onclick="'javascript:updateUserAdmin('+${user.uid}+');'">设置管理员</a>
+                                                        </li>
+                                                    </th:block>
+                                                    <th:block th:if="${user.role == '1'}">
+                                                        <li>
+                                                            <a th:onclick="'javascript:updateUserBlack('+${user.uid}+');'">设置黑名单</a>
+                                                        </li>
+                                                    </th:block>
+                                                    <th:block th:if="${user.role == '0'}">
+                                                        <li>
+                                                            <a th:onclick="'javascript:updateBlackUser('+${user.uid}+');'">恢复用户</a>
+                                                        </li>
+                                                    </th:block>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </th:block >
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th style=" text-align:center;">商品编号</th>
+                                    <th style=" text-align:center;">商品标题</th>
+                                    <th style=" text-align:center;">商品简介</th>
+                                    <th style=" text-align:center;">封面图片</th>
+                                    <th style=" text-align:center;">模型地址</th>
+                                    <th style=" text-align:center;">上传作者</th>
+                                    <th style=" text-align:center;">状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- End .panel -->
+                </div>
+                <!-- col-lg-12 end here -->
+            </div>
+        </div>
+        <!-- End .outlet -->
+    </div>
+    <!-- End .content-wrapper -->
+    <div class="clearfix"></div>
+</div>
+<!-- End #content -->
+<!--<script th:src="@{/js/base.js}"></script>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    var tale = new $.tale();
+    function delUser(uid) {
+        tale.alertConfirm({
+            title:'确定删除该用户吗?',
+            then: function () {
+                tale.post({
+                    url : '/user/delete',
+                    data: {uid: uid},
+                    success: function (result) {
+                        if(result && result.code == '0'){
+                            alert("删除成功！");
+                        } else {
+                            alert("删除失败！");
+                        }
+                    }
+                });
+            }
+        });
+    }
+    /*]]>*/
+</script>-->
+<script type="text/javascript">
+    function delUser(uid) {
+        $.ajax({
+            type: "POST",
+            data: {uid: uid},
+            url: "/user/delete",
+            success: function (data) {
+                if (data.code == '0') {
+                    alert("删除成功！");
+                    window.location.href = ("/user-manage");
+                } else {
+                    alert("删除失败！");
+                }
+            },
+        });
+    }
+
+    function updateUserAdmin(uid) {
+        $.ajax({
+            type: "POST",
+            data: {uid: uid},
+            url: "/admin/setAdmin",
+            success: function (data) {
+                if (data.code == '0') {
+                    alert("设置管理员成功！")
+                    window.location.href = ("/user-manage");
+                } else {
+                    alert("设置管理员失败！");
+                }
+            },
+        });
+    }
+
+    function updateUserBlack(uid) {
+        $.ajax({
+            type: "POST",
+            data: {uid: uid},
+            url: "/admin/setBlack",
+            success: function (data) {
+                if (data.code == '0') {
+                    alert("设置黑名单成功！")
+                    window.location.href = ("/user-manage");
+                } else {
+                    alert("设置黑名单失败！");
+                }
+            },
+        });
+    }
+
+    function updateBlackUser(uid) {
+        $.ajax({
+            type: "POST",
+            data: {uid: uid},
+            url: "/admin/setUser",
+            success: function (data) {
+                if (data.code == '0') {
+                    alert("设置普通用户成功！")
+                    window.location.href = ("/user-manage");
+                } else {
+                    alert("设置普通用户失败！");
+                }
+            },
+        });
+    }
+</script>
+</body>
+</html>
