@@ -81,14 +81,15 @@
     <section id="content">
         <div class="container">
             <div class="row">
-                <div class="skill-home"> <div class="skill-home-solid clearfix">
-                    <th:block th:each="article:${articles}">
-                            <div class="col-md-3 col-sm-6 text-center">
-                                <span class="icons c4"><i class="fa fa-star"></i></span> <div class="box-area">
-                                <h3 th:text="${article.title}"></h3> <p th:text="${article.content}"></p></div>
-                            </div>
-                    </th:block>
-                </div>
+                <div class="skill-home">
+                    <div class="skill-home-solid clearfix">
+                        <th:block th:each="article:${articles}">
+                                <div class="col-md-3 col-sm-6 text-center">
+                                    <span class="icons c4"><i class="fa fa-star"></i></span> <div class="box-area">
+                                    <h3 th:text="${article.title}"></h3> <p th:text="${article.content}"></p></div>
+                                </div>
+                        </th:block>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,39 +106,15 @@
                 </div>
             </div>
             <div class="row service-v1 margin-bottom-40">
-                <div class="col-sm-4 md-margin-bottom-40">
-                    <img class="img-responsive" th:src="@{/portal/img/img5.jpg}" alt="">
-                    <h3>Apartments</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                </div>
-                <div class="col-sm-4 md-margin-bottom-40">
-                    <img class="img-responsive" th:src="@{/portal/img/img6.jpg}" alt="">
-                    <h3>luxury Villas</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                </div>
-                <div class="col-sm-4 md-margin-bottom-40">
-                    <img class="img-responsive" th:src="@{/portal/img/img7.jpg}" alt="">
-                    <h3>Gated Projects</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                </div>
+                    <th:block th:each="home:${homes}">
+                        <div class="col-sm-4 md-margin-bottom-40">
+                            <a th:href="${home.url}"><img class="img-responsive" th:src="${home.picurl}" alt=""></a>
+                            <h3 th:text="${home.title}"></h3>
+                            <p th:text="${home.introduce}"></p>
+                        </div>
+                    </th:block>
             </div>
-            <div class="row service-v1 margin-bottom-40">
-                <div class="col-sm-4 md-margin-bottom-40">
-                    <img class="img-responsive" th:src="@{/portal/img/img8.jpg}" alt="">
-                    <h3>Apartments</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                </div>
-                <div class="col-sm-4 md-margin-bottom-40">
-                    <img class="img-responsive" th:src="@{/portal/img/img9.jpg}" alt="">
-                    <h3>luxury Villas</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                </div>
-                <div class="col-sm-4 md-margin-bottom-40">
-                    <img class="img-responsive" th:src="@{/portal/img/img10.jpg}" alt="">
-                    <h3>Gated Projects</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                </div>
-            </div>
+
         </div>
     </section>
 

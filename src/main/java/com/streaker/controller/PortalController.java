@@ -2,9 +2,11 @@ package com.streaker.controller;
 
 import com.streaker.entity.Article;
 import com.streaker.entity.Comment;
+import com.streaker.entity.Home;
 import com.streaker.entity.ResponseBo;
 import com.streaker.service.ArticleService;
 import com.streaker.service.CommentService;
+import com.streaker.service.GoodsService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class PortalController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private GoodsService goodsService;
+
 
     /**
      * 前台展示文章列表
@@ -35,7 +40,9 @@ public class PortalController {
     @GetMapping("/portal-index")
     public String potalIndexShow(HttpServletRequest request){
         List<Article> articles = articleService.getFormArticle();
-        request.setAttribute("articles",articles);
+        List<Home> homes = goodsService.getHomeList();
+        request.setAttribute("articles", articles);
+        request.setAttribute("homes", homes);
         //System.out.println("####前台展示最新4条文章" + articles.toString());
         return "portal-index";
     }

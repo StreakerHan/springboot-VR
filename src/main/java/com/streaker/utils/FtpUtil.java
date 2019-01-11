@@ -68,7 +68,7 @@ public class FtpUtil {
                 }
             }
         }
-        file_path = FTP_ADDRESS + ":" + NGINX_PORT + "/" + originFileName;
+        file_path = "http://" + FTP_ADDRESS + ":" + NGINX_PORT + "/" + originFileName;
         return file_path;
     }
 
@@ -112,7 +112,7 @@ public class FtpUtil {
                 }
             }
         }
-        file_path = FTP_ADDRESS + ":" + NGINX_PORT + "/" + originFileName + "/"+"index.html";
+        file_path = "http://" + FTP_ADDRESS + ":" + NGINX_PORT + "/" + originFileName + "/"+"index.html";
         return file_path;
     }
 }

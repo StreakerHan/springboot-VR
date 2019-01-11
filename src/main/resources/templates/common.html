@@ -61,9 +61,15 @@
                             <li>
                                 <a href="#" class="full-screen"><i class="fa-fullscreen"></i></a>
                             </li>
+
+                        </ul>
+                        <ul class="nav navbar-nav pull-left">
+                            <li>
+                                <a href="#" class="full-screen"><span class="text-slogan" id="mytime"></span></a>
+                            </li>
                         </ul>
                         <ul class="nav navbar-nav pull-right">
-                            <li class="dropdown">
+                            <!--<li class="dropdown">
                                 <a th:href="@{/#}" data-toggle="dropdown"><i class="br-alarm"></i> <span class="notification">5</span></a>
                                 <ul class="dropdown-menu notification-menu right" role="menu">
                                     <li class="clearfix">
@@ -97,7 +103,7 @@
                                         <a th:href="@{/#}" class="notification-link"> ticket</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>-->
                             <li class="dropdown">
                                     <a th:href="@{/#}" data-toggle="dropdown">
                             <img class="user-avatar" th:src="@{/img/avatars/48.jpg}"></a>
@@ -371,5 +377,17 @@
         <script th:src="@{/js/app.js}"></script>
         <script th:src="@{/js/base.js}"></script>
         <script th:src="@{/js/pages/data-tables.js}"></script>
+        <script type="text/javascript">
+            function showTime(){
+                nowtime=new Date();
+                year=nowtime.getFullYear();
+                month=nowtime.getMonth()+1;
+                date=nowtime.getDate();
+                document.getElementById("mytime").innerText=year+"年"+month+"月"+date+" "+nowtime.toLocaleTimeString();
+            }
+
+            setInterval("showTime()",1000);
+
+        </script>
     </div>
 </html>
