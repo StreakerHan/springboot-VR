@@ -1,5 +1,6 @@
 package com.streaker.controller;
 
+import com.streaker.annotation.LogAnno;
 import com.streaker.entity.Home;
 import com.streaker.entity.ResponseBo;
 import com.streaker.entity.User;
@@ -36,6 +37,7 @@ public class GoodsController {
 
     @PostMapping("/add-good")
     @ResponseBody
+    @LogAnno
     public ResponseBo addGoods(HttpServletRequest request, @RequestParam(value = "title",required = false) String title,
                                @RequestParam(value = "introduce",required = false) String introduce,
                                @RequestParam(value = "url",required = false) MultipartFile url,

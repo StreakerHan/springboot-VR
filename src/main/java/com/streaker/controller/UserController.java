@@ -1,5 +1,6 @@
 package com.streaker.controller;
 
+import com.streaker.annotation.LogAnno;
 import com.streaker.entity.ResponseBo;
 import com.streaker.entity.User;
 import com.streaker.service.LogService;
@@ -60,6 +61,7 @@ public class UserController {
      */
     @PostMapping("/login")
     @ResponseBody
+    @LogAnno
     public ResponseBo login(HttpServletRequest request, String username, String password){
         password = MD5Utils.encrypt(username, password);
         UsernamePasswordToken token = new UsernamePasswordToken(username,password);
@@ -126,6 +128,7 @@ public class UserController {
      */
     @PostMapping(value = "/admin/profile")
     @ResponseBody
+    @LogAnno
     public ResponseBo updateUser( @RequestParam(value = "username",required=false) String username, @RequestParam(value = "email",required=false) String email,
                                  @RequestParam(value = "phone",required=false) String phone, HttpServletRequest request, HttpSession session){
         //根据subject中的用户名获取用户的id
@@ -159,6 +162,7 @@ public class UserController {
      */
     @PostMapping("/admin/setAdmin")
     @ResponseBody
+    @LogAnno
     public  ResponseBo updateUserAdmin(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
         User user = userService.getUserById(uid);
         userService.updateUserAdmin(user);
@@ -171,6 +175,7 @@ public class UserController {
      */
     @PostMapping("/admin/setBlack")
     @ResponseBody
+    @LogAnno
     public  ResponseBo updateUserBlack(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
         User user = userService.getUserById(uid);
         userService.updateUserBlack(user);
@@ -181,6 +186,7 @@ public class UserController {
     /**
      * 将黑名单设置为普通用户
      */
+    @LogAnno
     @PostMapping("/admin/setUser")
     @ResponseBody
     public  ResponseBo updateBlackUser(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
@@ -195,6 +201,7 @@ public class UserController {
      * @param
      * @return
      */
+    @LogAnno
     @GetMapping("/user-manage")
     public String getUserList(HttpServletRequest request){
         List<User> users = userService.getUserList();
@@ -211,6 +218,7 @@ public class UserController {
      * @param uid
      * @return
      */
+    @LogAnno
     @PostMapping("/user/delete")
     @ResponseBody
     public ResponseBo delUser(@RequestParam(name = "uid") Integer uid){

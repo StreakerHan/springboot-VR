@@ -1,5 +1,6 @@
 package com.streaker.controller;
 
+import com.streaker.annotation.LogAnno;
 import com.streaker.entity.Comment;
 import com.streaker.entity.ResponseBo;
 import com.streaker.service.CommentService;
@@ -39,6 +40,7 @@ public class CommentController {
      */
     @PostMapping("/delete/comment")
     @ResponseBody
+    @LogAnno
     public ResponseBo delComment(@RequestParam(value = "cid") Integer cid){
         commentService.deleteComment(cid);
         //System.out.println("&&&&&&&&删除的留言"+ cid);

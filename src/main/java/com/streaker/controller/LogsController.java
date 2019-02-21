@@ -1,5 +1,6 @@
 package com.streaker.controller;
 
+import com.streaker.annotation.LogAnno;
 import com.streaker.entity.Log;
 import com.streaker.service.LogService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -22,6 +23,7 @@ public class LogsController {
     private LogService logService;
 
     @GetMapping("/system-logs")
+    @LogAnno
     public String getLogList(HttpServletRequest request){
         List<Log> logs = logService.getLogList();
         request.setAttribute("logs",logs);

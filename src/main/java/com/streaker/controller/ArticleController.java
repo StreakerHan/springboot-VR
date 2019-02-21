@@ -1,5 +1,6 @@
 package com.streaker.controller;
 
+import com.streaker.annotation.LogAnno;
 import com.streaker.entity.Article;
 import com.streaker.entity.ResponseBo;
 import com.streaker.entity.User;
@@ -30,6 +31,7 @@ public class ArticleController {
 
     @PostMapping(value = "/add-article")
     @ResponseBody
+    @LogAnno
     public ResponseBo addArticle(HttpServletRequest request, @RequestParam(value = "title" ,required = false) String title,
                                  @RequestParam(value = "cdesc",required = false) String cdesc, @RequestParam(value = "content",required = false) String content,
                                  @RequestParam(value = "username",required = false) String username, @RequestParam(value = "email",required = false) String email,
@@ -50,6 +52,7 @@ public class ArticleController {
      * 获取文章列表
      */
     @GetMapping("/article-manage")
+    @LogAnno
     public String getArticleList(HttpServletRequest request){
         List<Article> articles = articleService.getArticleList();
         request.setAttribute("articles",articles);
@@ -63,6 +66,7 @@ public class ArticleController {
      */
     @PostMapping("/delete/article")
     @ResponseBody
+    @LogAnno
     public ResponseBo delArticle(@RequestParam("aid") Integer aid){
         articleService.deleteArticleById(aid);
         //System.out.println("删除文章" + aid + "成功！");

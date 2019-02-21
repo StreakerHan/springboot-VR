@@ -38,7 +38,7 @@ public class WebLogAspect {
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-    @Pointcut("execution(public * com.streaker.controller..*.*(..))") //定义切点
+    @Pointcut("@annotation(com.streaker.annotation.LogAnno)") //定义切点
     public void webLog(){}
 
 

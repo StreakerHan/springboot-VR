@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration(exclude={DruidDataSourceAutoConfigure.class})
 @SpringBootApplication
 @MapperScan("com.streaker.dao")
-@ComponentScan(basePackages = {"com.streaker.shiro","com.streaker.utils","com.streaker.controller","com.streaker.service"})
+@ComponentScan(basePackages = {"com.streaker.shiro","com.streaker.utils","com.streaker.controller","com.streaker.service","com.streaker.aspect","com.streaker.annotation"})
 public class SpringbootApplication {
 
 	public static void main(String[] args) {

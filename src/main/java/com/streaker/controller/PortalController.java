@@ -1,5 +1,6 @@
 package com.streaker.controller;
 
+import com.streaker.annotation.LogAnno;
 import com.streaker.entity.Article;
 import com.streaker.entity.Comment;
 import com.streaker.entity.Home;
@@ -52,6 +53,7 @@ public class PortalController {
      */
     @PostMapping("/addComment")
     @ResponseBody
+    @LogAnno
     public ResponseBo addComment(HttpServletRequest request, @RequestParam(value = "username",required = false) String username,
                                  @RequestParam(value = "email",required = false) String email,
                                  @RequestParam(value = "comment",required = false) String comment,
