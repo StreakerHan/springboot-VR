@@ -83,7 +83,7 @@
             data: {aid: aid},
             url: "/delete/article",
             success: function (data) {
-                if (data.code == '0') {
+                if (data.code == '200') {
                     alert("删除成功！");
                     window.location.href = ("/article-manage");
                 } else {

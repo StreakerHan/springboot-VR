@@ -114,7 +114,7 @@
             data:  $("#validate").serialize(),
             url: "/add-article",
             success: function (data) {
-                if (data.code == '0') {
+                if (data.code == '200') {
                     alert("发布成功！");
                     /*window.location.href = ("/article-add");*/
                 } else {

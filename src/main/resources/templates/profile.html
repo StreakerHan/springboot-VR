@@ -175,7 +175,7 @@
                    url : '/admin/profile',
                    data: $("#user-form").serialize(),
                    success: function (result) {
-                       if(result && result.code == '0'){
+                       if(result && result.code == '200'){
                            tale.alertOk('保存成功');
                            /*alert("保存成功！")*/
                            /*window.location.href = '/profile';*/

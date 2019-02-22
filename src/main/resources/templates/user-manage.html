@@ -154,7 +154,7 @@
         data: {uid: uid},
         url: "/user/delete",
         success: function (data) {
-        if (data.code == '0') {
+        if (data.code == '200') {
             alert("删除成功！");
             window.location.href = ("/user-manage");
         } else {
@@ -170,7 +170,7 @@
             data: {uid: uid},
             url: "/admin/setAdmin",
             success: function (data) {
-                if (data.code == '0') {
+                if (data.code == '200') {
                     alert("设置管理员成功！")
                     window.location.href = ("/user-manage");
                 } else {
@@ -186,7 +186,7 @@
             data: {uid: uid},
             url: "/admin/setBlack",
             success: function (data) {
-                if (data.code == '0') {
+                if (data.code == '200') {
                     alert("设置黑名单成功！")
                     window.location.href = ("/user-manage");
                 } else {
@@ -202,7 +202,7 @@
             data: {uid: uid},
             url: "/admin/setUser",
             success: function (data) {
-                if (data.code == '0') {
+                if (data.code == '200') {
                     alert("设置普通用户成功！")
                     window.location.href = ("/user-manage");
                 } else {

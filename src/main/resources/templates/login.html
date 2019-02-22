@@ -157,7 +157,7 @@
             url: '/login',
             data: $("#loginForm").serialize(),
             success: function (result) {
-                if (result && result.code == '0') {
+                if (result && result.code == '200') {
                     window.location.href = '/index';
                 } else {
                     alert("登录失败！")
