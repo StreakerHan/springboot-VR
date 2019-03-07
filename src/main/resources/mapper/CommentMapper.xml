@@ -9,7 +9,7 @@
     <resultMap type="com.streaker.entity.Comment" id="Comment">
         <id column="cid" property="cid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
         <id column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <id column="cdate" property="cdate" javaType="java.util.Date" jdbcType="INTEGER"/>
+        <id column="cdate" property="cdate" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <id column="comment" property="comment" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <id column="email" property="email" javaType="java.lang.String" jdbcType="VARCHAR"/>
     </resultMap>
@@ -43,4 +43,9 @@
         SELECT * FROM <include refid="BASE_TABLE"/>
         ORDER BY aid DESC limit 4;
     </select>-->
+
+    <!--查询表中记录条数-->
+    <select id="selectCount" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM <include refid="BASE_TABLE"/>
+    </select>
 </mapper>

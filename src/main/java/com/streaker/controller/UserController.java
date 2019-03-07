@@ -3,10 +3,9 @@ package com.streaker.controller;
 import com.streaker.annotation.LogAnno;
 import com.streaker.entity.ResponseBo;
 import com.streaker.entity.User;
-import com.streaker.service.LogService;
-import com.streaker.service.UserService;
+import com.streaker.service.*;
 import com.streaker.utils.Constant;
-import com.streaker.utils.MD5Utils;
+import com.streaker.utils.DateUtils;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -21,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
+
+import static com.streaker.utils.MD5Utils.encrypt;
 
 
 /**
@@ -39,6 +40,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ArticleService articleService;
+
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private GoodsService goodsService;
+
     /**
      * 登录界面展示
      */
@@ -48,13 +58,33 @@ public class UserController {
     }
 
     /**
-     * 个人资料界面展示
+     * 注册界面展示
      */
-    /*@RequestMapping("/{page}")
-    public String showPage(@PathVariable String page){
-        System.out.println("界面名称："+page);
-        return page;
-    }*/
+    @GetMapping("/userRegister")
+    public String register(){
+        return "userRegister";
+    }
+
+    /**
+     * 用户注册
+     * @param username
+     * @param password
+     * @return
+     */
+    @PostMapping("/userRegister")
+    @ResponseBody
+    public ResponseBo register(@RequestParam(value = "username",required = false) String username,
+                               @RequestParam(value = "password",required = false) String password){
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(encrypt(username,password));
+        user.setRole("1");
+        user.setPhone("");
+        user.setEmail("");
+        user.setUdate(DateUtils.dateTransToChina(new Date()));
+        userService.addUser(user);
+        return ResponseBo.ok();
+    }
 
     /**
      * 登录认证控制
@@ -63,7 +93,7 @@ public class UserController {
     @ResponseBody
     @LogAnno
     public ResponseBo login(HttpServletRequest request, String username, String password){
-        password = MD5Utils.encrypt(username, password);
+        password = encrypt(username, password);
         UsernamePasswordToken token = new UsernamePasswordToken(username,password);
         if(request.getParameter("rememberMe")!=null){
             token.setRememberMe(true);
@@ -71,15 +101,10 @@ public class UserController {
         Subject subject = SecurityUtils.getSubject();
         try{
             subject.login(token);
-            //System.out.println("******************" + token.toString());
             //根据Subject中的用户名获取用户id
             User user2 = (User) SecurityUtils.getSubject().getPrincipal();
-            String un = user2.getUsername();
-            User user1 = userService.getUserByUsername(un);
-            Integer id = user1.getUid();
-            String role = user1.getRole();
             //向数据库中插入日志
-            logService.addLog(new Date(), id, un, request.getRemoteAddr(),role);
+            //logService.addLog(new Date(), user2.getUid(), user2.getUsername(), request.getRemoteAddr(),user2.getRole(),Constant.LOGIN_MANAGE);
             request.getSession().setAttribute(Constant.LOGIN_SESSION_KEY,token);
             return ResponseBo.ok();
         }catch (UnknownAccountException e){
@@ -108,6 +133,12 @@ public class UserController {
     public String index(@PathVariable String page,Model model){
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         model.addAttribute("loginUser", user);
+        int count = articleService.selectCount();
+        model.addAttribute("articleCount",count);
+        int count1 = commentService.selectCount();
+        model.addAttribute("commentCount",count1);
+        int count2 = goodsService.selectCount();
+        model.addAttribute("goodsCount",count2);
         return page;
     }
 
@@ -116,13 +147,13 @@ public class UserController {
      * @param request
      * @return
      */
-    /*public User user(HttpServletRequest request) {
+    public User user(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if(null == session){
             return null;
         }
         return (User) session.getAttribute(Constant.LOGIN_SESSION_KEY);
-    }*/
+    }
     /**
      * 更新用户信息
      */
@@ -133,17 +164,12 @@ public class UserController {
                                  @RequestParam(value = "phone",required=false) String phone, HttpServletRequest request, HttpSession session){
         //根据subject中的用户名获取用户的id
         User user2 = (User) SecurityUtils.getSubject().getPrincipal();
-        String un = user2.getUsername();
-        User user1 = userService.getUserByUsername(un);
-        Integer id = user1.getUid();
-
         User user = new User();
         if (StringUtils.isNotBlank(username) && StringUtils.isNotBlank(email)
                 && StringUtils.isNotBlank(phone)) {
 
 
-            user.setUid(id);
-            /*System.out.println(id);*/
+            user.setUid(user2.getUid());
             user.setUsername(username);
             user.setEmail(email);
             user.setPhone(phone);
@@ -154,6 +180,7 @@ public class UserController {
             user2.setEmail(user.getEmail());
             user2.setPhone(user.getPhone());
         }
+        logService.addLog(new Date(), user2.getUid(), user.getUsername(), request.getRemoteAddr(),user2.getRole(),Constant.UPDATE_PERSON_INFO);
         return ResponseBo.ok();
     }
 
@@ -166,7 +193,8 @@ public class UserController {
     public  ResponseBo updateUserAdmin(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
         User user = userService.getUserById(uid);
         userService.updateUserAdmin(user);
-        //System.out.println("****将用户id为"+uid+"的用户设置为管理员！****");
+        User user1 = (User) SecurityUtils.getSubject().getPrincipal();
+        logService.addLog(new Date(), user1.getUid(), user1.getUsername(), request.getRemoteAddr(),user1.getRole(),Constant.UPDATE_USER_ROLE);
         return ResponseBo.ok();
     }
 
@@ -179,7 +207,8 @@ public class UserController {
     public  ResponseBo updateUserBlack(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
         User user = userService.getUserById(uid);
         userService.updateUserBlack(user);
-        //System.out.println("****将用户id为"+uid+"的用户设置为黑名单！****");
+        User user1 = (User) SecurityUtils.getSubject().getPrincipal();
+        logService.addLog(new Date(), user1.getUid(), user1.getUsername(), request.getRemoteAddr(),user1.getRole(),Constant.UPDATE_USER_ROLE);
         return ResponseBo.ok();
     }
 
@@ -192,7 +221,8 @@ public class UserController {
     public  ResponseBo updateBlackUser(@RequestParam(value = "uid",required = false) Integer uid, HttpServletRequest request){
         User user = userService.getUserById(uid);
         userService.updateBlackUser(user);
-        //System.out.println("****将黑名单id为"+uid+"的用户设置为普通用户！****");
+        User user1 = (User) SecurityUtils.getSubject().getPrincipal();
+        logService.addLog(new Date(), user1.getUid(), user1.getUsername(), request.getRemoteAddr(),user1.getRole(),Constant.UPDATE_USER_ROLE);
         return ResponseBo.ok();
     }
 
@@ -206,10 +236,6 @@ public class UserController {
     public String getUserList(HttpServletRequest request){
         List<User> users = userService.getUserList();
         request.setAttribute("users",users);
-        //输出所有用户的用户名
-        /*for (int i = 0 ; i < users.size(); i ++ ){
-            System.out.println(users.get(i).getUsername());
-        }*/
         return "user-manage";
     }
 
@@ -221,9 +247,10 @@ public class UserController {
     @LogAnno
     @PostMapping("/user/delete")
     @ResponseBody
-    public ResponseBo delUser(@RequestParam(name = "uid") Integer uid){
+    public ResponseBo delUser(HttpServletRequest request,@RequestParam(name = "uid") Integer uid){
         userService.deleteUser(uid);
-        //System.out.println("******删除用户"+ uid);
+        User user1 = (User) SecurityUtils.getSubject().getPrincipal();
+        logService.addLog(new Date(), user1.getUid(), user1.getUsername(), request.getRemoteAddr(),user1.getRole(),Constant.DELETE_USER);
         return  ResponseBo.ok();
     }
 

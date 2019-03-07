@@ -45,4 +45,10 @@ public class CommentServiceImpl implements CommentService{
     public List<Comment> getCommentRecently() {
         return null;
     }
+
+    @Override
+    public int selectCount() {
+        int count = commentDao.selectCount();
+        return count;
+    }
 }

@@ -68,7 +68,7 @@
                                 <!-- End .form-group  -->
                                 <div class="form-group">
                                     <div class="col-lg-offset-2">
-                                        <button class="btn btn-default ml15" type="submit" th:onclick="'javascript:saveArticle()'">发布文章</button>
+                                        <a class="btn btn-default ml15" type="button" th:onclick="'javascript:saveArticle()'">发布文章</a>
                                     </div>
                                 </div>
                                 <!-- End .form-group  -->
@@ -89,34 +89,24 @@
 </div>
 <!-- End #content -->
 <script type="text/javascript">
-    /*<![CDATA[*/
-    /*var tale = new $.tale();
-    function saveArticle() {
-        tale.get({
-            url : '/add-article',
-            data: $("#validate").serialize(),
-            success: function (result) {
-                if(result && result.code == '0'){
-                    alert("发布成功！");
-                    /!*window.location.href = '/article-add';*!/
-                } else {
-                    alert("发布失败！");
-                }
-            }
-        });
-    }*/
-
-    /*]]>*/
 
     function saveArticle() {
         $.ajax({
-            type: "POST",
+            type: 'POST',
             data:  $("#validate").serialize(),
             url: "/add-article",
             success: function (data) {
-                if (data.code == '200') {
+                if (data.code == 200) {
                     alert("发布成功！");
-                    /*window.location.href = ("/article-add");*/
+                    window.location.href = ("/article-add");
+                } else {
+                    alert("发布失败！");
+                }
+            },
+            error: function (data) {
+                if (data.code == 200) {
+                    alert("发布成功！");
+                    window.location.href = ("/article-add");
                 } else {
                     alert("发布失败！");
                 }
@@ -124,7 +114,5 @@
         });
     }
 </script>
-
-
 </body>
 </html>

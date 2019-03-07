@@ -23,7 +23,7 @@ public interface HomeDao {
     /**
      * 通过主键id删除房子接口
      */
-    int deleteHome(@Param("hid") Integer hid);
+    int deleteHomeById(@Param("hid") String hid);
 
     /**
      * 更新房子信息接口
@@ -38,7 +38,7 @@ public interface HomeDao {
     /**
      *查询房子总量接口
      */
-    Long getHomeCount();
+    int selectCount();
 
     /**
      * 查询最近添加的房子信息接口（只需要查询id和title）
@@ -49,4 +49,9 @@ public interface HomeDao {
      * 根据title或desc搜索房子信息接口
      */
     List<Home> searchHome(@Param("param") String param);
+
+    /**
+     * 根据id查询房子
+     */
+    Home findHomeById(@Param("hid") String hid);
 }

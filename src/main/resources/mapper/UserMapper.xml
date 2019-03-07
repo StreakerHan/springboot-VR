@@ -10,11 +10,24 @@
    <id column="uid" property="uid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
    <id column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
    <id column="password" property="password" javaType="java.lang.String" jdbcType="VARCHAR"/>
-   <id column="udate" property="udate" javaType="java.util.Date" jdbcType="VARCHAR"/>
+   <id column="udate" property="udate" javaType="java.lang.String" jdbcType="VARCHAR"/>
    <id column="role" property="role" javaType="java.lang.String" jdbcType="VARCHAR"/>
    <id column="phone" property="phone" javaType="java.lang.String" jdbcType="VARCHAR"/>
    <id column="email" property="email" javaType="java.lang.String" jdbcType="VARCHAR"/>
 </resultMap>
+
+    <!--新增用户信息-->
+    <insert id="addUser" parameterType="com.streaker.entity.User">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            uid, username, password, udate, role , phone, email
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{uid},  #{username}, #{password}, #{udate}, #{role}, #{phone} ,#{email}
+        </trim>
+    </insert>
+
     <!--通过用户名查询用户-->
    <select id="getUserByUsername" resultMap="User">
 	  select * from t_user where username = #{username}
@@ -47,7 +60,7 @@
                email = #{email},
             </if>
            <if test="phone != null">
-              phone = #{phone},
+              phone = #{phone}
            </if>
         </set>
       WHERE uid= #{uid}

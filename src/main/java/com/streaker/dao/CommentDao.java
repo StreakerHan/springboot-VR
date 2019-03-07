@@ -35,4 +35,9 @@ public interface CommentDao {
      * 查看最近提交的意见接口
      */
     List<Comment> getCommentRecently();
+
+    /**
+     * 查询数量
+     */
+    int selectCount();
 }

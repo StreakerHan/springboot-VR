@@ -1,7 +1,6 @@
 package com.streaker.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 文章实体类
@@ -27,7 +26,17 @@ public class Article implements Serializable{
 
     private String email;
 
-    private Date cdate;
+    private String cdate;
+
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Integer getAid() {
         return aid;
@@ -85,11 +94,11 @@ public class Article implements Serializable{
         this.email = email;
     }
 
-    public Date getCdate() {
+    public String getCdate() {
         return cdate;
     }
 
-    public void setCdate(Date cdate) {
+    public void setCdate(String cdate) {
         this.cdate = cdate;
     }
 }

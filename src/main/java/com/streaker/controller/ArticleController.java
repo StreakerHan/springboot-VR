@@ -5,7 +5,10 @@ import com.streaker.entity.Article;
 import com.streaker.entity.ResponseBo;
 import com.streaker.entity.User;
 import com.streaker.service.ArticleService;
+import com.streaker.service.LogService;
 import com.streaker.service.UserService;
+import com.streaker.utils.Constant;
+import com.streaker.utils.DateUtils;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,8 @@ public class ArticleController {
     private ArticleService articleService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private LogService logService;
 
     @PostMapping(value = "/add-article")
     @ResponseBody
@@ -39,12 +44,8 @@ public class ArticleController {
 
         //根据subject中的用户名获取用户的id
         User user2 = (User) SecurityUtils.getSubject().getPrincipal();
-        username = user2.getUsername();
-        User user1 = userService.getUserByUsername(username);
-        uid = user1.getUid();
-        articleService.addArticle(title,email,username,cdesc,content,uid,new Date());
-        //System.out.println("######" + username + uid + title);
-
+        articleService.addArticle(title,email,username,cdesc,content,user2.getUid(), DateUtils.dateTransToChina(new Date()),"0");
+        logService.addLog(new Date(), user2.getUid(), user2.getUsername(), request.getRemoteAddr(),user2.getRole(), Constant.ADD_ARTICLE);
         return ResponseBo.ok();
     }
 
@@ -56,8 +57,6 @@ public class ArticleController {
     public String getArticleList(HttpServletRequest request){
         List<Article> articles = articleService.getArticleList();
         request.setAttribute("articles",articles);
-        //System.out.println("#####文章列表");
-        //System.out.println(articles.toString());
         return "article-manage";
     }
 
@@ -67,9 +66,11 @@ public class ArticleController {
     @PostMapping("/delete/article")
     @ResponseBody
     @LogAnno
-    public ResponseBo delArticle(@RequestParam("aid") Integer aid){
+    public ResponseBo delArticle(HttpServletRequest request,@RequestParam("aid") Integer aid){
         articleService.deleteArticleById(aid);
-        //System.out.println("删除文章" + aid + "成功！");
+        //根据subject中的用户名获取用户的id
+        User user2 = (User) SecurityUtils.getSubject().getPrincipal();
+        logService.addLog(new Date(), user2.getUid(), user2.getUsername(), request.getRemoteAddr(),user2.getRole(), Constant.DELETE_ARTICLE);
         return  ResponseBo.ok();
     }
 

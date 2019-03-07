@@ -8,16 +8,17 @@
 
     <!-- 基本列 -->
     <sql id="BASE_COLUMN">
-        l.lid, l.uid, l.username, l.ldate, l.ip, l.role
+        l.lid, l.uid, l.username, l.ldate, l.ip, l.role, l.operation
     </sql>
 
     <resultMap type="com.streaker.entity.Log" id="Log">
     <id column="lid" property="lid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
     <id column="uid" property="uid" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
     <id column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
-    <id column="ldate" property="ldate" javaType="java.util.Date" jdbcType="INTEGER"/>
+    <id column="ldate" property="ldate" javaType="java.lang.String" jdbcType="VARCHAR"/>
     <id column="role" property="role" javaType="java.lang.String" jdbcType="VARCHAR"/>
     <id column="ip" property="ip" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <id column="operation" property="operation" javaType="java.lang.String" jdbcType="VARCHAR"/>
 </resultMap>
 
     <!-- 新增日志记录 -->
@@ -25,10 +26,10 @@
         INSERT INTO
         <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            uid, username, ldate, ip, role,
+            uid, username, ldate, ip, role, operation
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            #{uid},  #{username}, #{ldate}, #{ip}, #{role},
+            #{uid},  #{username}, #{ldate}, #{ip}, #{role}, #{operation}
         </trim>
     </insert>
 

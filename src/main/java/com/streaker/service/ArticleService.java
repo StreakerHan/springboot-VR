@@ -1,10 +1,8 @@
 package com.streaker.service;
 
 import com.streaker.entity.Article;
-import com.sun.xml.internal.rngom.digested.DTextPattern;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,7 +16,7 @@ public interface ArticleService {
      * 添加文章接口
      */
     void addArticle(String title, String email, String username, String cdesc, String content,
-                    Integer uid, Date cdate);
+                    Integer uid, String cdate, String status);
 
     /**
      * 通过id查找文章
@@ -39,4 +37,9 @@ public interface ArticleService {
      * 获取最新的4条文章
      */
     List<Article> getFormArticle();
+
+    /**
+     * 获取数量
+     */
+    int selectCount();
 }

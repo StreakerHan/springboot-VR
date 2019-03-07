@@ -1,7 +1,6 @@
 package com.streaker.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * user entity
@@ -25,7 +24,7 @@ public class User implements Serializable{
 
     private String role;
 
-    private Date udate;
+    private String udate;
 
     public Integer getUid() {
         return uid;
@@ -75,11 +74,11 @@ public class User implements Serializable{
         this.role = role;
     }
 
-    public Date getUdate() {
+    public String getUdate() {
         return udate;
     }
 
-    public void setUdate(Date udate) {
+    public void setUdate(String udate) {
         this.udate = udate;
     }
 }

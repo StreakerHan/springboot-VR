@@ -1,7 +1,5 @@
 package com.streaker.entity;
 
-import java.util.Date;
-
 /**
  * comment entity
  *
@@ -18,7 +16,7 @@ public class Comment {
 
     private String username;
 
-    private Date cdate;
+    private String cdate;
 
     public Integer getCid() {
         return cid;
@@ -52,11 +50,11 @@ public class Comment {
         this.username = username == null ? null : username.trim();
     }
 
-    public Date getCdate() {
+    public String getCdate() {
         return cdate;
     }
 
-    public void setCdate(Date cdate) {
+    public void setCdate(String cdate) {
         this.cdate = cdate;
     }
 }

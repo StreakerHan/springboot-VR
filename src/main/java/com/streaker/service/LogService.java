@@ -16,7 +16,7 @@ public interface LogService {
     /**
      * 添加日志接口
      */
-    void addLog(Date ldate, Integer uid, String username, String ip, String role);
+    void addLog(Date ldate, Integer uid, String username, String ip, String role, String operation);
 
     /**
      * 通过主键id删除日志接口

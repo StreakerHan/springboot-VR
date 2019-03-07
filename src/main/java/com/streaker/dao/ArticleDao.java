@@ -39,4 +39,9 @@ public interface ArticleDao {
      * 获取最新的4条文章
      */
     List<Article> getFormArticle();
+
+    /**
+     * 获取总数量
+     */
+    int selectCount();
 }

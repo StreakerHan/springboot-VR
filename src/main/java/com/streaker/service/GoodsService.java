@@ -21,12 +21,12 @@ public interface GoodsService {
     /**
      * 通过主键id删除房子接口
      */
-    int deleteHome(@Param("hid") Integer hid);
+    int deleteHome(@Param("hid") String hid);
 
     /**
      * 更新房子信息接口
      */
-    /*int updateHome(Home home);*/
+    int updateHome(Home home);
 
     /**
      * 查看房子列表接口
@@ -36,7 +36,7 @@ public interface GoodsService {
     /**
      *查询房子总量接口
      */
-    /*Long getHomeCount();*/
+    int selectCount();
 
     /**
      * 查询最近添加的房子信息接口（只需要查询id和title）
@@ -48,4 +48,8 @@ public interface GoodsService {
      */
   /*  List<Home> searchHome(@Param("param") String param);*/
 
+    /**
+     * 根据id查询房子
+     */
+    Home findHomeById(@Param("hid") String hid);
 }

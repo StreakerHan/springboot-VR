@@ -3,6 +3,7 @@ package com.streaker.service.impl;
 import com.streaker.dao.LogDao;
 import com.streaker.entity.Log;
 import com.streaker.service.LogService;
+import com.streaker.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +22,15 @@ public class LogServiceImpl implements LogService {
     @Autowired
     private LogDao logDao;
 
-
     @Override
-    public void addLog(Date ldate, Integer uid, String username, String ip, String role) {
+    public void addLog(Date ldate, Integer uid, String username, String ip, String role, String operation) {
         Log log = new Log();
-        log.setLdate(new Date());
+        log.setLdate(DateUtils.dateTransToChina(new Date()));
         log.setUid(uid);
         log.setUsername(username);
         log.setIp(ip);
         log.setRole(role);
+        log.setOperation(operation);
         logDao.addLog(log);
     }
 

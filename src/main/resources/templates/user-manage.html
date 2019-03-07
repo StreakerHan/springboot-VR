@@ -150,17 +150,17 @@
 <script type="text/javascript">
     function delUser(uid) {
         $.ajax({
-        type: "POST",
-        data: {uid: uid},
-        url: "/user/delete",
-        success: function (data) {
-        if (data.code == '200') {
-            alert("删除成功！");
-            window.location.href = ("/user-manage");
-        } else {
-            alert("删除失败！");
-        }
-        },
+            type: "POST",
+            data: {uid: uid},
+            url: "/user/delete",
+            success: function (data) {
+            if (data.code == '200') {
+                alert("删除成功！");
+                window.location.href = ("/user-manage");
+            } else {
+                alert("删除失败！");
+                }
+            },
         });
     }
 
@@ -171,7 +171,7 @@
             url: "/admin/setAdmin",
             success: function (data) {
                 if (data.code == '200') {
-                    alert("设置管理员成功！")
+                    alert("设置管理员成功！");
                     window.location.href = ("/user-manage");
                 } else {
                     alert("设置管理员失败！");
@@ -187,7 +187,7 @@
             url: "/admin/setBlack",
             success: function (data) {
                 if (data.code == '200') {
-                    alert("设置黑名单成功！")
+                    alert("设置黑名单成功！");
                     window.location.href = ("/user-manage");
                 } else {
                     alert("设置黑名单失败！");
@@ -203,7 +203,7 @@
             url: "/admin/setUser",
             success: function (data) {
                 if (data.code == '200') {
-                    alert("设置普通用户成功！")
+                    alert("设置普通用户成功！");
                     window.location.href = ("/user-manage");
                 } else {
                     alert("设置普通用户失败！");

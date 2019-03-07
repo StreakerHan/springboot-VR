@@ -1,7 +1,5 @@
 package com.streaker.entity;
 
-import java.util.Date;
-
 /**
  * home entity
  *
@@ -17,7 +15,7 @@ public class Home {
 
     private String url;
 
-    private Date hdate;
+    private String hdate;
 
     private Integer uid;
 
@@ -25,14 +23,14 @@ public class Home {
 
     private String picurl;
 
-    private String is_show;
+    private String isShow;
 
     public String getIsShow() {
-        return is_show;
+        return isShow;
     }
 
     public void setIsShow(String is_show) {
-        this.is_show = is_show;
+        this.isShow = is_show;
     }
 
     public String getPicurl() {
@@ -75,11 +73,11 @@ public class Home {
         this.url = url == null ? null : url.trim();
     }
 
-    public Date getHdate() {
+    public String getHdate() {
         return hdate;
     }
 
-    public void setHdate(Date hdate) {
+    public void setHdate(String hdate) {
         this.hdate = hdate;
     }
 

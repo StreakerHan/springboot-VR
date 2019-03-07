@@ -26,8 +26,13 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public int deleteHome(Integer hid) {
-        return homeDao.deleteHome(hid);
+    public int deleteHome(String hid) {
+        return homeDao.deleteHomeById(hid);
+    }
+
+    @Override
+    public int updateHome(Home home) {
+        return homeDao.updateHome(home);
     }
 
     @Override
@@ -37,8 +42,19 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public int selectCount() {
+        int count = homeDao.selectCount();
+        return count;
+    }
+
+    @Override
     public List<Home> getHomeRecently() {
         List<Home> lists = homeDao.getHomeRecently();
         return lists;
+    }
+
+    @Override
+    public Home findHomeById(String hid) {
+        return homeDao.findHomeById(hid);
     }
 }

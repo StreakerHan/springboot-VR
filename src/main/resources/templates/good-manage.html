@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='good'">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='homes'">
 <header th:replace="common::headerFragment(${title},${active})"></header>
 <body>
 <div th:replace="common::common-body"></div>
@@ -30,34 +30,32 @@
                             <table class="table display" id="datatable">
                                 <thead>
                                 <tr>
-                                    <th style=" text-align:center;">商品编号</th>
+                                   <!-- <th style=" text-align:center;">商品编号</th>-->
                                     <th style=" text-align:center;">商品标题</th>
-                                    <th style=" text-align:center;">商品简介</th>
+                                    <th style=" text-align:center;">添加时间</th>
                                     <th style=" text-align:center;">封面图片</th>
-                                    <th style=" text-align:center;">模型地址</th>
+                                    <th style=" text-align:center;">模型展示</th>
                                     <th style=" text-align:center;">上传作者</th>
                                     <th style=" text-align:center;">状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!--/*@thymesVar id="users" type=""*/-->
-                                <th:block th:each="user : ${users}">
-                                    <tr th:attr="uid=${user.uid}" class="odd gradeX">
-                                        <td class="center" th:text="${user.uid}"></td>
-                                        <td class="center" th:text="${user.username}"></td>
-                                        <td class="center" th:text="${user.phone}"></td>
-                                        <td class="center" th:text="${user.email}"></td>
-                                        <td class="center" th:text="${user.udate}"></td>
+                                <!--/*@thymesVar id="homes" type=""*/-->
+                                <th:block th:each="home : ${homes}">
+                                    <tr th:attr="hid=${home.hid}" class="odd gradeX">
+                                        <!--<td class="center" th:width="100" th:text="${home.hid}"></td>-->
+                                        <td class="center" th:text="${home.title}"></td>
+                                        <td class="center" th:text="${home.hdate}"></td>
+                                        <td class="center"><a th:href="${home.picurl}">点击查看</a></td>
+                                        <td class="center"><a th:href="${home.url}">点击查看</a></td>
+                                        <td class="center" th:text="${home.username}"></td>
                                         <td class="center">
-                                            <th:block th:if="${user.role == '2'}">
-                                                <button type="button" class="btn btn-xs btn-primary">管理员</button>
+                                            <th:block th:if="${home.isShow == '1'}">
+                                                <button type="button" class="btn btn-xs btn-primary">已上架</button>
                                             </th:block>
-                                            <th:block th:if="${user.role == '1'}">
-                                                <button type="button" class="btn btn-xs btn-success">普通用户</button>
-                                            </th:block>
-                                            <th:block th:if="${user.role == '0'}">
-                                                <button type="button" class="btn btn-xs btn-dark">黑名单</button>
+                                            <th:block th:if="${home.isShow == '0'}">
+                                                <button type="button" class="btn btn-xs btn-success">已下架</button>
                                             </th:block>
                                         </td>
                                         <td>
@@ -68,29 +66,22 @@
                                                     <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <th:block th:if="${user.role != '2'}">
                                                         <li>
-                                                            <a th:onclick="'javascript:delUser('+${user.uid}+');'">删除用户</a>
+                                                            <a th:onclick="'javascript:updateShow('+${home.hid}+');'">编辑商品</a>
+                                                        </li>
+                                                    <th:block th:if="${home.isShow == '1'}">
+                                                        <li>
+                                                            <a th:onclick="'javascript:downShow('+${home.hid}+');'">商品下架</a>
                                                         </li>
                                                     </th:block>
-                                                    <th:block th:if="${user.role == '2'}">
+                                                    <th:block th:if="${home.isShow == '0'}">
                                                         <li>
-                                                            <a href="#">没有权限</a>
+                                                            <a th:onclick="'javascript:upShow('+${home.hid}+');'">商品上架</a>
                                                         </li>
                                                     </th:block>
-                                                    <th:block th:if="${user.role == '1'}">
+                                                    <th:block th:if="${home.isShow != '2'}">
                                                         <li>
-                                                            <a th:onclick="'javascript:updateUserAdmin('+${user.uid}+');'">设置管理员</a>
-                                                        </li>
-                                                    </th:block>
-                                                    <th:block th:if="${user.role == '1'}">
-                                                        <li>
-                                                            <a th:onclick="'javascript:updateUserBlack('+${user.uid}+');'">设置黑名单</a>
-                                                        </li>
-                                                    </th:block>
-                                                    <th:block th:if="${user.role == '0'}">
-                                                        <li>
-                                                            <a th:onclick="'javascript:updateBlackUser('+${user.uid}+');'">恢复用户</a>
+                                                            <a th:onclick="'javascript:deleteHome('+${home.hid}+');'">删除商品</a>
                                                         </li>
                                                     </th:block>
                                                 </ul>
@@ -101,11 +92,11 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th style=" text-align:center;">商品编号</th>
+                                    <!--<th style=" text-align:center;">商品编号</th>-->
                                     <th style=" text-align:center;">商品标题</th>
-                                    <th style=" text-align:center;">商品简介</th>
+                                    <th style=" text-align:center;">添加时间</th>
                                     <th style=" text-align:center;">封面图片</th>
-                                    <th style=" text-align:center;">模型地址</th>
+                                    <th style=" text-align:center;">模型展示</th>
                                     <th style=" text-align:center;">上传作者</th>
                                     <th style=" text-align:center;">状态</th>
                                     <th>操作</th>
@@ -124,91 +115,50 @@
     <!-- End .content-wrapper -->
     <div class="clearfix"></div>
 </div>
-<!-- End #content -->
-<!--<script th:src="@{/js/base.js}"></script>
 <script type="text/javascript">
-    /*<![CDATA[*/
-    var tale = new $.tale();
-    function delUser(uid) {
-        tale.alertConfirm({
-            title:'确定删除该用户吗?',
-            then: function () {
-                tale.post({
-                    url : '/user/delete',
-                    data: {uid: uid},
-                    success: function (result) {
-                        if(result && result.code == '0'){
-                            alert("删除成功！");
-                        } else {
-                            alert("删除失败！");
-                        }
-                    }
-                });
-            }
-        });
-    }
-    /*]]>*/
-</script>-->
-<script type="text/javascript">
-    function delUser(uid) {
+    function downShow(hid) {
         $.ajax({
             type: "POST",
-            data: {uid: uid},
-            url: "/user/delete",
+            data: {hid: hid},
+            url: "/good/downShow",
             success: function (data) {
                 if (data.code == '200') {
-                    alert("删除成功！");
-                    window.location.href = ("/user-manage");
+                    alert("下架成功！");
+                    window.location.href = ("/good-manage");
+                } else {
+                    alert("下架失败！");
+                }
+            },
+        });
+    }
+
+    function upShow(hid) {
+        $.ajax({
+            type: "POST",
+            data: {hid: hid},
+            url: "/good/upShow",
+            success: function (data) {
+                if (data.code == '200') {
+                    alert("上架成功！")
+                    window.location.href = ("/good-manage");
+                } else {
+                    alert("上架失败！");
+                }
+            },
+        });
+    }
+
+    function deleteHome(hid) {
+        $.ajax({
+            type: "POST",
+            data: {hid: hid},
+            url: "/good/delete",
+            success: function (data) {
+                if (data.code == '200') {
+                    alert("删除成功！")
+                    window.location.href = ("/good-manage");
                 } else {
                     alert("删除失败！");
-                }
-            },
-        });
-    }
-
-    function updateUserAdmin(uid) {
-        $.ajax({
-            type: "POST",
-            data: {uid: uid},
-            url: "/admin/setAdmin",
-            success: function (data) {
-                if (data.code == '200') {
-                    alert("设置管理员成功！")
-                    window.location.href = ("/user-manage");
-                } else {
-                    alert("设置管理员失败！");
-                }
-            },
-        });
-    }
-
-    function updateUserBlack(uid) {
-        $.ajax({
-            type: "POST",
-            data: {uid: uid},
-            url: "/admin/setBlack",
-            success: function (data) {
-                if (data.code == '200') {
-                    alert("设置黑名单成功！")
-                    window.location.href = ("/user-manage");
-                } else {
-                    alert("设置黑名单失败！");
-                }
-            },
-        });
-    }
-
-    function updateBlackUser(uid) {
-        $.ajax({
-            type: "POST",
-            data: {uid: uid},
-            url: "/admin/setUser",
-            success: function (data) {
-                if (data.code == '200') {
-                    alert("设置普通用户成功！")
-                    window.location.href = ("/user-manage");
-                } else {
-                    alert("设置普通用户失败！");
                 }
             },
         });

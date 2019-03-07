@@ -13,6 +13,11 @@ import java.util.List;
 public interface UserService {
 
     /**
+     * 新增用户信息
+     */
+    int addUser(User user);
+
+    /**
      * 根据用户名查询用户
      */
     User getUserByUsername(String username);

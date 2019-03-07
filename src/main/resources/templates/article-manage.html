@@ -35,6 +35,7 @@
                                     <th style=" text-align:center;">作者</th>
                                     <th style=" text-align:center;">电子邮箱</th>
                                     <th style=" text-align:center;">发布时间</th>
+                                    <th style=" text-align:center;">状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -46,9 +47,44 @@
                                         <td class="center" th:text="${article.username}"></td>
                                         <td class="center" th:text="${article.email}"></td>
                                         <td class="center" th:text="${article.cdate}"></td>
-                                        <td>
-                                            <button type="button" class="btn btn-xs btn-danger" th:onclick="'javascript:delArticle('+${article.aid}+');'">删除文章</button>
+                                        <td class="center">
+                                            <th:block th:if="${article.status == '1'}">
+                                                <button type="button" class="btn btn-xs btn-success">已发布</button>
+                                            </th:block>
+                                            <th:block th:if="${article.status == '0'}">
+                                                <button type="button" class="btn btn-xs btn-dark">未发布</button>
+                                            </th:block>
                                         </td>
+                                        <td>
+                                            <!--<button type="button" class="btn btn-xs" th:onclick="'showInfo('+${user.uid}+');'">查看信息</button>-->
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    更多
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a th:onclick="'javascript:deleteArticle('+${article.aid}+');'">删除文章</a>
+                                                        </li>
+                                                        <li>
+                                                            <a th:onclick="'javascript:updateArticle('+${article.aid}+');'">编辑文章</a>
+                                                        </li>
+                                                    <th:block th:if="${article.status == '1'}">
+                                                        <li>
+                                                            <a th:onclick="'javascript:dwonArticle('+${article.aid}+');'">撤销发布</a>
+                                                        </li>
+                                                    </th:block>
+                                                    <th:block th:if="${article.status == '0'}">
+                                                        <li>
+                                                            <a th:onclick="'javascript:upArticle('+${article.aid}+');'">发布文章</a>
+                                                        </li>
+                                                    </th:block>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <!--<td>
+                                            <button type="button" class="btn btn-xs btn-danger" th:onclick="'javascript:delArticle('+${article.aid}+');'">删除文章</button>
+                                        </td>-->
                                     </tr>
                                 </th:block >
                                 </tbody>
@@ -59,6 +95,7 @@
                                     <th style=" text-align:center;">作者</th>
                                     <th style=" text-align:center;">电子邮箱</th>
                                     <th style=" text-align:center;">发布时间</th>
+                                    <th style=" text-align:center;">状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </tfoot>
@@ -84,8 +121,8 @@
             url: "/delete/article",
             success: function (data) {
                 if (data.code == '200') {
-                    alert("删除成功！");
                     window.location.href = ("/article-manage");
+                    alert("删除成功！");
                 } else {
                     alert("删除失败！");
                 }

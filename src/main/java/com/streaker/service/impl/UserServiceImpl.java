@@ -21,6 +21,17 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserDao userDao;
+
+    /**
+     * 新增用户信息
+     * @param user
+     * @return
+     */
+    @Override
+    public int addUser(User user) {
+        return userDao.addUser(user);
+    }
+
     /**
      * 根据用户名查询用户方法的实现
      * @param username
@@ -84,6 +95,11 @@ public class UserServiceImpl implements UserService{
         return userDao.updateBlackUser(user);
     }
 
+    /**
+     * 根据id查询用户信息
+     * @param uid
+     * @return
+     */
     @Override
     public User getUserById(Integer uid) {
         User user = userDao.getUserById(uid);

@@ -79,8 +79,11 @@ mybatis:
   type-aliases-package: com.sreaker.entity
   # mapper xml实现扫描路径
   mapper-locations: classpath:mapper/*.xml
-  # property:
-    # order: BEFORE
-  # configuration:
-    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #property:
+       #order: BEFORE
+    #configuration:
+       #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+logging:
+      level:
+        com.streaker.dao: DEBUG

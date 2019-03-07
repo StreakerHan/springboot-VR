@@ -8,6 +8,7 @@ import com.streaker.entity.ResponseBo;
 import com.streaker.service.ArticleService;
 import com.streaker.service.CommentService;
 import com.streaker.service.GoodsService;
+import com.streaker.utils.DateUtils;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,6 @@ public class PortalController {
         List<Home> homes = goodsService.getHomeList();
         request.setAttribute("articles", articles);
         request.setAttribute("homes", homes);
-        //System.out.println("####前台展示最新4条文章" + articles.toString());
         return "portal-index";
     }
 
@@ -61,10 +61,9 @@ public class PortalController {
         Comment comment1 = new Comment();
         comment1.setComment(comment);
         comment1.setUsername(username);
-        comment1.setCdate(new Date());
+        comment1.setCdate(DateUtils.dateTransToChina(new Date()));
         comment1.setEmail(email);
         commentService.addComment(comment1);
-        //System.out.println("%%%%%%%%%%%%%用户留言：" + username + comment );
         return ResponseBo.ok();
 
     }

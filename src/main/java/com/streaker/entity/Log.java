@@ -1,8 +1,6 @@
 package com.streaker.entity;
 
 
-import java.util.Date;
-
 /**
  * log entity
  *
@@ -12,7 +10,7 @@ import java.util.Date;
 public class Log {
     private Integer lid;
 
-    private Date ldate;
+    private String ldate;
 
     private Integer uid;
 
@@ -21,6 +19,16 @@ public class Log {
     private String ip;
 
     private String role;
+
+    private String operation;
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
 
     public String getRole() {
         return role;
@@ -38,11 +46,11 @@ public class Log {
         this.lid = lid;
     }
 
-    public Date getLdate() {
+    public String getLdate() {
         return ldate;
     }
 
-    public void setLdate(Date ldate) {
+    public void setLdate(String ldate) {
         this.ldate = ldate;
     }
 

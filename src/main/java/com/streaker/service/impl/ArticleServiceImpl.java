@@ -7,7 +7,6 @@ import com.streaker.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public class ArticleServiceImpl implements ArticleService{
     private ArticleDao articleDao;
 
     @Override
-    public void addArticle(String title, String email, String username, String cdesc, String content, Integer uid, Date cdate) {
+    public void addArticle(String title, String email, String username, String cdesc, String content, Integer uid, String cdate,String status) {
         Article article = new Article();
         article.setTitle(title);
         article.setCdesc(cdesc);
@@ -58,5 +57,11 @@ public class ArticleServiceImpl implements ArticleService{
     public List<Article> getFormArticle() {
         List<Article> list = articleDao.getFormArticle();
         return list;
+    }
+
+    @Override
+    public int selectCount() {
+        int count = articleDao.selectCount();
+        return count;
     }
 }
