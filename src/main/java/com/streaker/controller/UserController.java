@@ -71,7 +71,7 @@ public class UserController {
      * @param password
      * @return
      */
-    @PostMapping("/userRegister")
+    @PostMapping("/register")
     @ResponseBody
     public ResponseBo register(@RequestParam(value = "username",required = false) String username,
                                @RequestParam(value = "password",required = false) String password){

@@ -29,7 +29,6 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
-        shiroFilterFactoryBean.setLoginUrl("/userRegister");
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //该设置只对filterChain起作用，比如在filterChain中设置了filterChainDefinitionMap.put("/user/update", "perms[user:update]");，
@@ -38,7 +37,8 @@ public class ShiroConfig {
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
         /*filterChainDefinitionMap.put("/index", "user");*/
-       /* filterChainDefinitionMap.put("/**", "user");*/
+        filterChainDefinitionMap.put("/userRegister", "anon");
+        filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/portal-index", "anon");
         filterChainDefinitionMap.put("/portal-contact", "anon");
         filterChainDefinitionMap.put("/portal/**","anon");

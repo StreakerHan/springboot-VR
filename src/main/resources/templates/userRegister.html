@@ -169,7 +169,7 @@
             $.ajax({
                 type: 'POST',
                 data: $("#loginForm1").serialize(),
-                url: "/userRegister",
+                url: "/register",
                 success: function (data) {
                     if (data.code == '200') {
                         alert("注册成功！");
