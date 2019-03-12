@@ -64,7 +64,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                         <li>
-                                                            <a th:onclick="'javascript:deleteArticle('+${article.aid}+');'">删除文章</a>
+                                                            <a th:onclick="'javascript:delArticle('+${article.aid}+');'">删除文章</a>
                                                         </li>
                                                         <li>
                                                             <a th:onclick="'javascript:updateArticle('+${article.aid}+');'">编辑文章</a>
@@ -114,6 +114,38 @@
 </div>
 <!-- End #content -->
 <script type="text/javascript">
+        function dwonArticle(aid) {
+            $.ajax({
+                type: "POST",
+                data: {aid: aid},
+                url: "/article/downShow",
+                success: function (data) {
+                    if (data.code == '200') {
+                        alert("撤销发布成功！");
+                        window.location.href = ("/article-manage");
+                    } else {
+                        alert("撤销发布失败！");
+                    }
+                },
+            });
+        }
+
+    function upArticle(aid) {
+        $.ajax({
+            type: "POST",
+            data: {aid: aid},
+            url: "/article/upShow",
+            success: function (data) {
+                if (data.code == '200') {
+                    alert("文章发布成功！")
+                    window.location.href = ("/article-manage");
+                } else {
+                    alert("文章发布失败！");
+                }
+            },
+        });
+    }
+
     function delArticle(aid) {
         $.ajax({
             type: "POST",

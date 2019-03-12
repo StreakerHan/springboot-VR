@@ -1,7 +1,6 @@
 package com.streaker.service;
 
 import com.streaker.entity.Article;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,12 +20,12 @@ public interface ArticleService {
     /**
      * 通过id查找文章
      */
-    Article getArticleById(@Param("aid") Integer aid);
+    Article getArticleById( Integer aid);
 
     /**
      * 通过id删除文章
      */
-    void deleteArticleById(@Param("aid") Integer aid);
+    void deleteArticleById( Integer aid);
 
     /**
      * 获取文章列表
@@ -42,4 +41,9 @@ public interface ArticleService {
      * 获取数量
      */
     int selectCount();
+
+    /**
+     * 更新文章
+     */
+    int updateArticle(Article article);
 }

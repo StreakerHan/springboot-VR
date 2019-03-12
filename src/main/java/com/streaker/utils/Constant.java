@@ -62,7 +62,17 @@ public class Constant {
     public static String DOWN_GOOD = "商品下架";
 
     /**
-     * 删除商品
+     * 商品上架
      */
     public static String UP_GOOD = "商品上架";
+
+    /**
+     * 文章发布
+     */
+    public static String UP_ARTICLE = "文章发布";
+
+    /**
+     * 文章撤销
+     */
+    public static String DOWN_ARTICLE = "文章撤销";
 }

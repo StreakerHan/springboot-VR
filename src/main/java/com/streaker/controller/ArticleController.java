@@ -74,4 +74,42 @@ public class ArticleController {
         return  ResponseBo.ok();
     }
 
+    /**
+     * 文章撤销发布处理
+     * @param request
+     * @param aid
+     * @return
+     */
+    @PostMapping("/article/downShow")
+    @ResponseBody
+    @LogAnno
+    public ResponseBo downShow(HttpServletRequest request,@RequestParam(value = "aid") Integer aid){
+        Article article = articleService.getArticleById(aid);
+        //将状态设置为‘0’
+        article.setStatus("0");
+        articleService.updateArticle(article);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        logService.addLog(new Date(), user.getUid(), user.getUsername(), request.getRemoteAddr(),user.getRole(),Constant.DOWN_ARTICLE);
+        return ResponseBo.ok();
+    }
+
+    /**
+     * 文章发布处理
+     * @param request
+     * @param aid
+     * @return
+     */
+    @PostMapping("/article/upShow")
+    @ResponseBody
+    @LogAnno
+    public ResponseBo upShow(HttpServletRequest request,@RequestParam(value = "aid") Integer aid){
+        Article article = articleService.getArticleById(aid);
+        //将状态设置为‘0’
+        article.setStatus("1");
+        articleService.updateArticle(article);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        logService.addLog(new Date(), user.getUid(), user.getUsername(), request.getRemoteAddr(),user.getRole(),Constant.UP_ARTICLE);
+        return ResponseBo.ok();
+    }
+
 }

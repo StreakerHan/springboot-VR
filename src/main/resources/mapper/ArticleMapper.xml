@@ -52,4 +52,37 @@
     <select id="selectCount" parameterType="String" resultType="Integer">
         SELECT COUNT(*) FROM <include refid="BASE_TABLE"/>
     </select>
+
+    <!--更新文章信息-->
+    <update id="updateArticle" parameterType="com.streaker.entity.Article">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        <set>
+            <if test="cdesc != null">
+                cdesc = #{cdesc},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        WHERE aid= #{aid}
+    </update>
+
+    <!--根据id查询文章-->
+    <select id="getArticleById" resultType="com.streaker.entity.Article">
+        SELECT
+        aid, uid, username,cdate, cdesc, title, content, email, status
+        FROM
+        <include refid="BASE_TABLE"/> AS a
+        WHERE a.aid = #{aid}
+    </select>
 </mapper>

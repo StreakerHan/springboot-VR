@@ -44,4 +44,9 @@ public interface ArticleDao {
      * 获取总数量
      */
     int selectCount();
+
+    /**
+     * 更新文章
+     */
+    int updateArticle(Article article);
 }

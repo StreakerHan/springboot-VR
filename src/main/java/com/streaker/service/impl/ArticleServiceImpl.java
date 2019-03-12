@@ -36,7 +36,7 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public Article getArticleById(Integer aid) {
-        return null;
+        return articleDao.getArticleById(aid);
     }
 
     @Override
@@ -63,5 +63,10 @@ public class ArticleServiceImpl implements ArticleService{
     public int selectCount() {
         int count = articleDao.selectCount();
         return count;
+    }
+
+    @Override
+    public int updateArticle(Article article) {
+        return articleDao.updateArticle(article);
     }
 }
