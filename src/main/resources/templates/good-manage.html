@@ -66,9 +66,6 @@
                                                     <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                        <li>
-                                                            <a th:onclick="'javascript:updateShow('+${home.hid}+');'">编辑商品</a>
-                                                        </li>
                                                     <th:block th:if="${home.isShow == '1'}">
                                                         <li>
                                                             <a th:onclick="'javascript:downShow('+${home.hid}+');'">商品下架</a>

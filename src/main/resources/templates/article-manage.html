@@ -66,9 +66,6 @@
                                                         <li>
                                                             <a th:onclick="'javascript:delArticle('+${article.aid}+');'">删除文章</a>
                                                         </li>
-                                                        <li>
-                                                            <a th:onclick="'javascript:updateArticle('+${article.aid}+');'">编辑文章</a>
-                                                        </li>
                                                     <th:block th:if="${article.status == '1'}">
                                                         <li>
                                                             <a th:onclick="'javascript:dwonArticle('+${article.aid}+');'">撤销发布</a>

@@ -74,6 +74,26 @@ spring:
     auto: true
     proxy-target-class: true
 
+  # Redis数据库索引（默认为0）
+  redis:
+    database: 0
+    host: 101.132.64.128
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+      shutdown-timeout: 100ms
+
 mybatis:
   # type-aliases扫描路径
   type-aliases-package: com.sreaker.entity
