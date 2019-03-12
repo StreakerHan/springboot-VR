@@ -47,7 +47,7 @@
 
     <!--获取最新的6条商品-->
     <select id="getHomeRecently" parameterType="com.streaker.entity.Home" resultType="com.streaker.entity.Home">
-        SELECT * FROM <include refid="BASE_TABLE"/>
+        SELECT * FROM <include refid="BASE_TABLE"/> WHERE isShow = '1'
         ORDER BY hid DESC limit 6;
     </select>
 

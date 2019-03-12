@@ -37,12 +37,12 @@ public class PortalController {
 
 
     /**
-     * 前台展示文章列表
+     * 前台展示文章/房屋列表
      */
     @GetMapping("/portal-index")
     public String potalIndexShow(HttpServletRequest request){
         List<Article> articles = articleService.getFormArticle();
-        List<Home> homes = goodsService.getHomeList();
+        List<Home> homes = goodsService.getHomeRecently();
         request.setAttribute("articles", articles);
         request.setAttribute("homes", homes);
         return "portal-index";

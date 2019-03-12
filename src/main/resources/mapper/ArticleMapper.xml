@@ -44,7 +44,7 @@
 
     <!--获取最新的4条文章-->
     <select id="getFormArticle" parameterType="com.streaker.entity.Article" resultType="com.streaker.entity.Article">
-        SELECT * FROM <include refid="BASE_TABLE"/>
+        SELECT * FROM <include refid="BASE_TABLE"/> WHERE status = '1'
         ORDER BY aid DESC limit 4;
     </select>
 
