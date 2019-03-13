@@ -4,6 +4,7 @@ import com.streaker.dao.HomeDao;
 import com.streaker.entity.Home;
 import com.streaker.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +48,11 @@ public class GoodsServiceImpl implements GoodsService {
         return count;
     }
 
+    /**
+     * 添加首页展示缓存
+     * @return
+     */
+    @Cacheable(cacheNames = "homeList")
     @Override
     public List<Home> getHomeRecently() {
         List<Home> lists = homeDao.getHomeRecently();

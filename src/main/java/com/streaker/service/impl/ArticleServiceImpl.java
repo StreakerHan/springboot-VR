@@ -5,6 +5,7 @@ import com.streaker.entity.Article;
 import com.streaker.entity.ResponseBo;
 import com.streaker.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,6 +54,11 @@ public class ArticleServiceImpl implements ArticleService{
         return list;
     }
 
+    /**
+     * 添加首页展示缓存
+     * @return
+     */
+    @Cacheable(cacheNames = "articleList")
     @Override
     public List<Article> getFormArticle() {
         List<Article> list = articleDao.getFormArticle();
