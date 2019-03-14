@@ -3,7 +3,9 @@ package com.streaker.service.impl;
 import com.streaker.dao.HomeDao;
 import com.streaker.entity.Home;
 import com.streaker.service.GoodsService;
+import com.streaker.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,10 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     private HomeDao homeDao;
+    @Autowired
+    private RedisUtils redisUtils;
 
+    @CachePut(value = "home",key = "#home.hid")
     @Override
     public int addHome(Home home) {
         return homeDao.addHome(home);
@@ -28,11 +33,15 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public int deleteHome(String hid) {
+        //删除redis缓存 (key)
+        redisUtils.del(hid);
         return homeDao.deleteHomeById(hid);
     }
 
     @Override
     public int updateHome(Home home) {
+        //在redis中添加缓存
+        redisUtils.set(home.getHid(),home.getIsShow());
         return homeDao.updateHome(home);
     }
 

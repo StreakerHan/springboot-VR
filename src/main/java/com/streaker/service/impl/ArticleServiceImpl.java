@@ -4,7 +4,9 @@ import com.streaker.dao.ArticleDao;
 import com.streaker.entity.Article;
 import com.streaker.entity.ResponseBo;
 import com.streaker.service.ArticleService;
+import com.streaker.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,10 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Autowired
     private ArticleDao articleDao;
+    @Autowired
+    private RedisUtils redisUtils;
 
+    @CachePut(value = "article",key = "#title")
     @Override
     public void addArticle(String title, String email, String username, String cdesc, String content, Integer uid, String cdate,String status) {
         Article article = new Article();
@@ -45,6 +50,8 @@ public class ArticleServiceImpl implements ArticleService{
         if(null == aid) {
             ResponseBo.error("删除失败！");
         }
+        //删除redis缓存 (key)
+        redisUtils.del(aid.toString());
        articleDao.deleteArticleById(aid);
     }
 
@@ -73,6 +80,8 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public int updateArticle(Article article) {
+        //在redis中添加缓存
+        redisUtils.set(article.getAid().toString(),article.getStatus());
         return articleDao.updateArticle(article);
     }
 }
