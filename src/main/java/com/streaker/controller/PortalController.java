@@ -5,6 +5,7 @@ import com.streaker.entity.Article;
 import com.streaker.entity.Comment;
 import com.streaker.entity.Home;
 import com.streaker.entity.ResponseBo;
+import com.streaker.service.AccountService;
 import com.streaker.service.ArticleService;
 import com.streaker.service.CommentService;
 import com.streaker.service.GoodsService;
@@ -35,6 +36,9 @@ public class PortalController {
     @Autowired
     private GoodsService goodsService;
 
+    @Autowired
+    private AccountService accountService;
+
 
     /**
      * 前台展示文章/房屋列表
@@ -45,6 +49,7 @@ public class PortalController {
         List<Home> homes = goodsService.getHomeRecently();
         request.setAttribute("articles", articles);
         request.setAttribute("homes", homes);
+        accountService.addAccount();
         return "portal-index";
     }
 

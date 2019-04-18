@@ -49,6 +49,9 @@ public class UserController {
     @Autowired
     private GoodsService goodsService;
 
+    @Autowired
+    private AccountService accountService;
+
     /**
      * 登录界面展示
      */
@@ -139,6 +142,8 @@ public class UserController {
         model.addAttribute("commentCount",count1);
         int count2 = goodsService.selectCount();
         model.addAttribute("goodsCount",count2);
+        int count3 = accountService.queryAccount();
+        model.addAttribute("accountCount",count3);
         return page;
     }
 

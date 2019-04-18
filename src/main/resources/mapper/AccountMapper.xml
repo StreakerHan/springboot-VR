@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.streaker.dao.AccountDao">
+
+    <sql id="BASE_TABLE">
+        t_account
+    </sql>
+
+    <resultMap type="com.streaker.entity.Account" id="Account">
+        <id column="account" property="account" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <!--更新访问次数-->
+    <update id="addAccount" parameterType="com.streaker.entity.Account">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        <set>
+            account = account + 1
+        </set>
+
+    </update>
+
+    <!--查询访问次数-->
+    <select id="queryAccount" resultType="java.lang.Integer">
+        SELECT account FROM <include refid="BASE_TABLE"/> limit 1
+    </select>
+</mapper>
