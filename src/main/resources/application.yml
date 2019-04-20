@@ -8,7 +8,7 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/vrhome?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
-      password: HYPHYPHYP123
+      password: HYPHYPHYP
 
       # 连接池配置
       initial-size: 5
