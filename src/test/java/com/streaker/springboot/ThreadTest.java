@@ -21,7 +21,7 @@ public class ThreadTest {
     @Test
     public void turning() throws InterruptedException {
         new Thread(new TurningRunner(), "偶数").start();
-        // 确保偶数线程线先获取到锁
+        // 确保偶数线程线先获取到锁111
         Thread.sleep(1);
         new Thread(new TurningRunner(), "奇数").start();
     }
